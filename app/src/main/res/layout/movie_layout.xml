@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingLeft="12dp"
-    android:paddingRight="8dp"
-    android:paddingBottom="40dp">
+    android:paddingTop="40dp"
+    android:paddingRight="8dp">
 
     <ImageView
         android:id="@+id/imageView"
