@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/git/PatheAppP3/app/src/main/res/layout/activity_film_collectie_main.xml" value="0.14735866543095458" />
         <entry key="..\:/git/PatheAppP3/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/git/PatheAppP3/app/src/main/res/layout/activity_main_content.xml" value="0.2975630611372381" />
+        <entry key="..\:/git/PatheAppP3/app/src/main/res/layout/content_film_collectie_main.xml" value="0.22" />
       </map>
     </option>
   </component>
