@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PahteApp">
         <activity
-            android:name=".ui.film_collectie_main"
+            android:name=".ui.movie_collection_main"
             android:theme="@style/Theme.PahteApp.NoActionBar"
             android:exported="true">
             <intent-filter>

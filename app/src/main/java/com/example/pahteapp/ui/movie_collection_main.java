@@ -13,20 +13,19 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.pahteapp.databinding.ActivityFilmCollectieMainBinding;
+import com.example.pahteapp.databinding.ActivityMovieCollectionMainBinding;
 
-public class film_collectie_main extends AppCompatActivity {
+public class movie_collection_main extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
-    private ActivityFilmCollectieMainBinding binding;
+    private ActivityMovieCollectionMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityFilmCollectieMainBinding.inflate(getLayoutInflater());
+        binding = ActivityMovieCollectionMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         setSupportActionBar(binding.toolbar);
 
 
