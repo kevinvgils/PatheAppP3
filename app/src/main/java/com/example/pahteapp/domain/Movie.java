@@ -7,7 +7,7 @@ public class Movie {
 
     @SerializedName("poster_path")
     @Expose
-    private Object posterPath;
+    private String posterPath;
     @SerializedName("adult")
     @Expose
     private Boolean adult;
@@ -48,11 +48,11 @@ public class Movie {
     @Expose
     private Double voteAverage;
 
-    public Object getPosterPath() {
+    public String getPosterPath() {
         return posterPath;
     }
 
-    public void setPosterPath(Object posterPath) {
+    public void setPosterPath(String posterPath) {
         this.posterPath = posterPath;
     }
 
