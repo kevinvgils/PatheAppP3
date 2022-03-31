@@ -1,8 +1,10 @@
-package com.example.pahteapp;
+package com.example.pahteapp.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.pahteapp.R;
 
 public class MainActivity extends AppCompatActivity {
 
