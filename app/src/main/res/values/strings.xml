@@ -11,4 +11,6 @@
     <string name="reviewdescription">reviewDescription</string>
     <string name="submit">Submit</string>
     <string name="moviebanner">movieBanner</string>
+    <string name="_120_minutes">120 minutes</string>
+    <string name="horror_action">Horror, Action</string>
 </resources>

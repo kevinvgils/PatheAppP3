@@ -55,11 +55,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:text="@string/description"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/movieRating" />
+        app:layout_constraintTop_toBottomOf="@+id/movieGenres" />
 
     <TextView
         android:id="@+id/reviewText"
@@ -84,46 +86,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/reviewText" />
 
-    <EditText
-        android:id="@+id/reviewContent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="96dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="@string/review"
-        android:inputType="textMultiLine"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/line" />
-
     <TextView
         android:id="@+id/ratingText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:text="@string/rating"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reviewContent" />
+        app:layout_constraintTop_toBottomOf="@+id/line" />
 
     <RatingBar
         android:id="@+id/ratingBar2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="-54dp"
-        android:layout_marginTop="-8dp"
+        android:layout_marginTop="-4dp"
         android:contentDescription="@string/reviewdescription"
         android:progressTint="#FFC426"
         android:rating="3"
         android:scaleX="0.5"
         android:scaleY="0.5"
         app:layout_constraintStart_toEndOf="@+id/ratingText"
-        app:layout_constraintTop_toBottomOf="@+id/reviewContent" />
+        app:layout_constraintTop_toBottomOf="@+id/line" />
 
     <Button
         android:id="@+id/reviewSubmitButton"
@@ -148,5 +134,28 @@
         android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ratingBar2" />
+
+    <TextView
+        android:id="@+id/movieDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/_120_minutes"
+        android:textColor="#60000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/movieRating"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/movieGenres"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/horror_action"
+        android:textColor="#60000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/movieDuration"
+        tools:ignore="TextContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
