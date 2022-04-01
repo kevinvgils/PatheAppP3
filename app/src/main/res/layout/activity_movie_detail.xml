@@ -9,9 +9,11 @@
         android:id="@+id/movieBanner"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:contentDescription="@string/moviebanner"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ImageContrastCheck"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
