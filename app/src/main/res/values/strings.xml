@@ -1,4 +1,16 @@
 <resources>
     <string name="app_name">PatheApp</string>
     <string name="movie_poster">movie poster</string>
+    <string name="rating">Rating:</string>
+    <string name="review">Review</string>
+    <string name="reviews">Reviews</string>
+    <string name="description">description</string>
+    <string name="_4_5">4/5</string>
+    <string name="movierating">movieRating</string>
+    <string name="title">title</string>
+    <string name="reviewdescription">reviewDescription</string>
+    <string name="submit">Submit</string>
+    <string name="moviebanner">movieBanner</string>
+    <string name="_120_minutes">120 minutes</string>
+    <string name="horror_action">Horror, Action</string>
 </resources>
