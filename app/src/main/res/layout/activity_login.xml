@@ -29,7 +29,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Gebruikersnaam" />
+            android:autofillHints="Username"
+            tools:ignore="LabelFor" />
 
         <EditText
             android:id="@+id/PassWord"
@@ -37,15 +38,16 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Wachtwoord" />
+            android:inputType="textPassword"
+            android:autofillHints="Password"
+            tools:ignore="LabelFor" />
 
         <Button
             android:id="@+id/LoginButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Login" />
+            android:text="@string/login" />
 
         <View
             android:id="@+id/divider"
@@ -59,15 +61,15 @@
             android:id="@+id/RegisterButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Geen account?" />
+            android:text="@string/geen_account" />
 
         <TextView
             android:id="@+id/GuestLink"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="4dp"
             android:layout_weight="1"
-            android:text="Doorgaan als gast?"
+            android:text="@string/doorgaan_als_gast"
             android:textAllCaps="false"
             android:textSize="16sp"
             android:textStyle="bold" />
