@@ -3,21 +3,31 @@ package com.example.pahteapp.ui;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import com.example.pahteapp.R;
 import com.example.pahteapp.dataaccess.ApiClient;
 import com.example.pahteapp.dataaccess.ApiInterface;
+import com.example.pahteapp.domain.DiscoverGenres;
 import com.example.pahteapp.domain.DiscoveredMovies;
+import com.example.pahteapp.domain.Genre;
 import com.example.pahteapp.domain.Movie;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,15 +41,20 @@ public class MainActivity extends AppCompatActivity {
     private MovieAdapter mAdapter;
     private ProgressBar progressBar;
 
-    private Switch mFilterSwitch;
+    private LinkedList<Genre> mGenreList = new LinkedList<>();
+    private FilterAdapter mFilterAdapter;
+    private RecyclerView mGenresRecyclerView;
+    private String mGenre;
+    private Integer mRating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         progressBar = findViewById(R.id.progress_bar);
-        setAdapter();
-        getAllMovies();
+        setAdapters();
+        getMovies(false);
+        setUpFilters();
 
         //Waneer laatste item gehaald in recyclerview haal volgende pagina op
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -50,48 +65,109 @@ public class MainActivity extends AppCompatActivity {
                 if (!recyclerView.canScrollVertically(1)) {
                     progressBar.setVisibility(View.VISIBLE);
                     page++;
-                    getAllMovies();
+                    getMovies(false);
                 }
             }
         });
-
-        setUpFilters();
     }
 
     private void setUpFilters() {
-        mFilterSwitch = findViewById(R.id.FiltersSwitch);
-        mFilterSwitch.setOnClickListener(new View.OnClickListener() {
+        Switch filterSwitch = findViewById(R.id.FiltersSwitch);
+        Button searchButton = findViewById(R.id.submitFilterButton);
+        filterSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ConstraintLayout FilterWrap = findViewById(R.id.FilterWrap);
-                if (mFilterSwitch.isChecked()){
+                if (filterSwitch.isChecked()){
                     FilterWrap.setVisibility(View.VISIBLE);
                 } else{
                     FilterWrap.setVisibility(View.GONE);
                 }
             }
         });
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getMovies(true);
+            }
+        });
+
+        getGenres();
     }
 
-    private void setAdapter() {
+    private void getFilters() {
+        EditText minRating = findViewById(R.id.minRating);
+        if(!minRating.getText().toString().equals("")){
+            mRating = Integer.parseInt(minRating.getText().toString());
+        }
+
+        EditText title = findViewById(R.id.FilterMovieTitle);
+        mGenre = title.getText().toString();
+    }
+
+    private void setAdapters() {
         mRecyclerView = findViewById(R.id.recyclerview);
         mAdapter = new MovieAdapter(this, nMovieList);
         mRecyclerView.setAdapter(mAdapter);
         int gridColumnCount = 2;
 
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, gridColumnCount));
+
+        //filters
+        mGenresRecyclerView = findViewById(R.id.GenresRecyclerView);
+        mFilterAdapter = new FilterAdapter(this, mGenreList);
+        mGenresRecyclerView.setAdapter(mFilterAdapter);
+        mGenresRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
     }
 
-    private void getAllMovies() {
-        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+    private void getGenres() {
 
-        Call<DiscoveredMovies> call = apiInterface.getMovies("1e2c1f57cbed4d3e0c5dcad5996f2649", page, "18,28");
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        try{
+            Call<DiscoverGenres> call = apiInterface.getGenres("1e2c1f57cbed4d3e0c5dcad5996f2649");
+            call.enqueue(new Callback<DiscoverGenres>() {
+                @Override
+                public void onResponse(Call<DiscoverGenres> call, Response<DiscoverGenres> response) {
+                    DiscoverGenres genreList = response.body();
+                    mGenreList.addAll(genreList.getGenres());
+
+                    if(mGenreList != null){
+                        mFilterAdapter.setMGenreList(mGenreList);
+                        Log.d("Filters", mFilterAdapter.getItemCount() + "");
+                        mFilterAdapter.notifyDataSetChanged();
+                    } else {
+                        Log.e("GenreListGenres", mGenreList.toString());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<DiscoverGenres> call, Throwable t) {
+                    Log.e("MainActivity", t.toString());
+                }
+            });
+        }
+        catch (Exception e){
+            Log.e("GenreError", e.toString());
+        }
+    }
+
+    private void getMovies(Boolean filter) {
+        if(filter){
+            getFilters();
+        }
+
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        Call<DiscoveredMovies> call = apiInterface.getMovies("1e2c1f57cbed4d3e0c5dcad5996f2649", page, mRating, mGenre);
 
         call.enqueue(new Callback<DiscoveredMovies>() {
             @Override
             public void onResponse(Call<DiscoveredMovies> call, Response<DiscoveredMovies> response) {
                 progressBar.setVisibility(View.GONE);
                 DiscoveredMovies movies = response.body();
+                if(filter){
+                    nMovieList.clear();
+                }
                 nMovieList.addAll(movies.getResults());
                 Log.d("MovieListMovies", nMovieList.toString());
                 mAdapter.setMovieList(nMovieList);

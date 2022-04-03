@@ -28,7 +28,7 @@
         android:layout_height="0dp"
         android:background="@color/white"
         android:padding="8dp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
@@ -45,7 +45,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/TitlePlainText"
+            android:id="@+id/FilterMovieTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -63,7 +63,7 @@
             android:background="?android:attr/listDivider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TitlePlainText" />
+            app:layout_constraintTop_toBottomOf="@+id/FilterMovieTitle" />
 
         <TextView
             android:id="@+id/GenreText"
@@ -80,9 +80,10 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/GenresRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/GenreText"
-            tools:layout_editor_absoluteX="1dp">
+            android:layout_height="200dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/GenreText">
 
         </androidx.recyclerview.widget.RecyclerView>
 
@@ -168,6 +169,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
+        <Button
+            android:id="@+id/submitFilterButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Zoek"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/decendSwitch" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
@@ -189,6 +200,7 @@
             android:text="Filters"
             android:textSize="24sp"
             android:textStyle="bold" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
