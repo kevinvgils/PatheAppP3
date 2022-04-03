@@ -4,10 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toolbar;
 
 import com.example.pahteapp.R;
 import com.example.pahteapp.dataaccess.ApiClient;
@@ -33,9 +37,27 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().hide();
         progressBar = findViewById(R.id.progress_bar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("PatheApp");
+        toolbar.inflateMenu(R.menu.main_menu);
         setAdapter();
         getAllMovies();
+
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if (item.getItemId() == R.id.home) {
+                    return false;
+                } else if(item.getItemId() == R.id.lists) {
+                    Intent intent = new Intent(getApplicationContext(), UserListActivity.class);
+                    startActivity(intent);
+                }
+
+                return false;
+            }
+        });
 
         //Waneer laatste item gehaald in recyclerview haal volgende pagina op
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
