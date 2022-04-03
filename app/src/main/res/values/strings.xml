@@ -13,4 +13,8 @@
     <string name="moviebanner">movieBanner</string>
     <string name="_120_minutes">120 minutes</string>
     <string name="horror_action">Horror, Action</string>
+    <string name="userName">user</string>
+    <string name="doorgaan_als_gast">Doorgaan als gast?</string>
+    <string name="geen_account">Geen account?</string>
+    <string name="login">Login</string>
 </resources>
