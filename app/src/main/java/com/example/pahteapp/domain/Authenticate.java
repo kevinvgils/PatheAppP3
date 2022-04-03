@@ -17,6 +17,9 @@ public class Authenticate {
     @SerializedName("session_id")
     @Expose
     private String sessionId;
+    @SerializedName("guest_session_id")
+    @Expose
+    private String guestSessionId;
 
     public Boolean getSuccess() {
         return success;
@@ -42,20 +45,30 @@ public class Authenticate {
         this.requestToken = requestToken;
     }
 
-    @Override
-    public String toString() {
-        return "Authenticate{" +
-                "success=" + success +
-                ", expiresAt='" + expiresAt + '\'' +
-                ", requestToken='" + requestToken + '\'' +
-                '}';
-    }
-
     public String getSessionId() {
         return sessionId;
     }
 
     public void setSessionId(String sessionId) {
         this.sessionId = sessionId;
+    }
+
+    public String getGuestSessionId() {
+        return guestSessionId;
+    }
+
+    public void setGuestSessionId(String guestSessionId) {
+        this.guestSessionId = guestSessionId;
+    }
+
+    @Override
+    public String toString() {
+        return "Authenticate{" +
+                "success=" + success +
+                ", expiresAt='" + expiresAt + '\'' +
+                ", requestToken='" + requestToken + '\'' +
+                ", sessionId='" + sessionId + '\'' +
+                ", guestSessionId='" + guestSessionId + '\'' +
+                '}';
     }
 }

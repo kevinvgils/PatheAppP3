@@ -39,4 +39,9 @@ public interface ApiInterface {
             @Query("api_key") String apiKey,
             @Field("request_token") String requestToken
     );
+
+    @POST("authentication/guest_session/new")
+    Call<Authenticate> createGuestSession(
+            @Query("api_key") String apiKey
+    );
 }

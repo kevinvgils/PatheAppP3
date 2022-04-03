@@ -21,7 +21,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class login extends AppCompatActivity {
-    public static String SESSION_ID = null;
+    public static String SESSION_ID = "";
 
 
     private TextView mGuest;
@@ -130,15 +130,39 @@ public class login extends AppCompatActivity {
         });
     }
 
+    // Start guest sessie
     private void loginAsGuest() {
         mGuest = findViewById(R.id.GuestLink);
 
         mGuest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("LOGIN", "Signed in as guest");
-                Intent intent = new Intent(view.getContext(), MainActivity.class);
-                view.getContext().startActivity(intent);
+                ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+
+                Call<Authenticate> call = apiInterface.createGuestSession("1e2c1f57cbed4d3e0c5dcad5996f2649");
+
+                call.enqueue(new Callback<Authenticate>() {
+                    @Override
+                    public void onResponse(Call<Authenticate> call, Response<Authenticate> response) {
+                        if(response.isSuccessful()) {
+                            Authenticate guestSession = response.body();
+                            SESSION_ID = guestSession.getGuestSessionId();
+                            Log.d("SessionCreated", SESSION_ID);
+                            Toast.makeText(getApplicationContext(), "Successfully logged in as guest!", Toast.LENGTH_SHORT).show();
+                            Log.d("LOGIN", "Signed in as guest");
+                            Intent intent = new Intent(view.getContext(), MainActivity.class);
+                            view.getContext().startActivity(intent);
+                        } else {
+                            Log.d("SessionFailed", "failure " + response.headers());
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<Authenticate> call, Throwable t) {
+                        Log.d("LoginFail", t.toString());
+                    }
+                });
             }
         });
     }
