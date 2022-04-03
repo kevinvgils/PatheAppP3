@@ -1,6 +1,7 @@
 package com.example.pahteapp.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Switch;
 
 import com.example.pahteapp.R;
 import com.example.pahteapp.dataaccess.ApiClient;
@@ -28,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private MovieAdapter mAdapter;
     private ProgressBar progressBar;
+
+    private Switch mFilterSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +54,23 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        setUpFilters();
+    }
+
+    private void setUpFilters() {
+        mFilterSwitch = findViewById(R.id.FiltersSwitch);
+        mFilterSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ConstraintLayout FilterWrap = findViewById(R.id.FilterWrap);
+                if (mFilterSwitch.isChecked()){
+                    FilterWrap.setVisibility(View.VISIBLE);
+                } else{
+                    FilterWrap.setVisibility(View.GONE);
+                }
+            }
+        });
     }
 
     private void setAdapter() {
@@ -64,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
     private void getAllMovies() {
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
-        Call<DiscoveredMovies> call = apiInterface.getMovies("1e2c1f57cbed4d3e0c5dcad5996f2649", page);
+        Call<DiscoveredMovies> call = apiInterface.getMovies("1e2c1f57cbed4d3e0c5dcad5996f2649", page, "18,28");
 
         call.enqueue(new Callback<DiscoveredMovies>() {
             @Override
@@ -82,4 +103,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }
