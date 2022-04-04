@@ -26,6 +26,12 @@ public interface ApiInterface {
             @Query("sort_by") String sort
     );
 
+    @GET("search/movie")
+    Call<DiscoveredMovies> getMoviesByName(
+            @Query("api_key") String apiKey,
+            @Query("query") String query
+    );
+
     @GET("genre/movie/list")
     Call<DiscoverGenres> getGenres(
             @Query("api_key") String apiKey
