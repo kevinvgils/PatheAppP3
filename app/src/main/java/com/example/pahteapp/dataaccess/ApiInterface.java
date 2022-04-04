@@ -2,6 +2,7 @@ package com.example.pahteapp.dataaccess;
 
 import com.example.pahteapp.domain.Authenticate;
 import com.example.pahteapp.domain.DiscoveredMovies;
+import com.example.pahteapp.domain.Movie;
 
 
 import retrofit2.Call;
@@ -9,6 +10,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiInterface {
@@ -17,6 +19,12 @@ public interface ApiInterface {
     Call<DiscoveredMovies> getMovies(
             @Query("api_key") String apiKey,
             @Query("page") int page
+    );
+
+    @GET("movie/{movie_id}")
+    Call<Movie> getMovie(
+            @Path("movie_id") Integer id,
+            @Query("api_key") String apiKey
     );
 
     @GET("authentication/token/new")
