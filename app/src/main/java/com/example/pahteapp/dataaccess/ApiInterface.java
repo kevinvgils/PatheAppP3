@@ -1,11 +1,12 @@
 package com.example.pahteapp.dataaccess;
 
 import com.example.pahteapp.domain.Authenticate;
+import com.example.pahteapp.domain.DiscoverGenres;
 import com.example.pahteapp.domain.DiscoveredMovies;
 import com.example.pahteapp.domain.MovieList;
 import com.example.pahteapp.domain.PaginatedUserList;
 import com.example.pahteapp.domain.User;
-import com.example.pahteapp.domain.UserList;
+
 
 
 import java.util.List;
@@ -23,7 +24,16 @@ public interface ApiInterface {
     @GET("discover/movie")
     Call<DiscoveredMovies> getMovies(
             @Query("api_key") String apiKey,
-            @Query("page") int page
+            @Query("page") int page,
+            @Query("vote_average.gte") Integer rating,
+            @Query("with_genres") String genre,
+            @Query("sort_by") String sort
+    );
+
+    @GET("genre/movie/list")
+    Call<DiscoverGenres> getGenres(
+            @Query("api_key") String apiKey
+
     );
 
     @GET("authentication/token/new")

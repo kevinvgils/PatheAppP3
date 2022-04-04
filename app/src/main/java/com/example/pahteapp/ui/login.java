@@ -25,7 +25,6 @@ public class login extends AppCompatActivity {
     public static String SESSION_ID = "";
     public static User USER_INFO = null;
 
-
     private TextView mGuest;
     private Button mLogin;
     private Authenticate requestToken = new Authenticate();

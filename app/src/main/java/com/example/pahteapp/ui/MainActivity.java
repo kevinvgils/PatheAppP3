@@ -1,7 +1,9 @@
 package com.example.pahteapp.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ListActivity;
@@ -10,16 +12,26 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toolbar;
+import android.widget.RadioButton;
+import android.widget.Switch;
 
 import com.example.pahteapp.R;
 import com.example.pahteapp.dataaccess.ApiClient;
 import com.example.pahteapp.dataaccess.ApiInterface;
+import com.example.pahteapp.domain.DiscoverGenres;
 import com.example.pahteapp.domain.DiscoveredMovies;
+import com.example.pahteapp.domain.Genre;
 import com.example.pahteapp.domain.Movie;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,6 +45,14 @@ public class MainActivity extends AppCompatActivity {
     private MovieAdapter mAdapter;
     private ProgressBar progressBar;
 
+    private LinkedList<Genre> mGenreList = new LinkedList<>();
+    private FilterAdapter mFilterAdapter;
+    private RecyclerView mGenresRecyclerView;
+
+    private String mGenre;
+    private Integer mRating;
+    private String mSorting;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,8 +62,9 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("PatheApp");
         toolbar.inflateMenu(R.menu.main_menu);
-        setAdapter();
-        getAllMovies();
+        setAdapters();
+        getMovies(false);
+        setUpFilters();
 
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -68,31 +89,135 @@ public class MainActivity extends AppCompatActivity {
                 if (!recyclerView.canScrollVertically(1)) {
                     progressBar.setVisibility(View.VISIBLE);
                     page++;
-                    getAllMovies();
+                    getMovies(false);
                 }
             }
         });
     }
 
-    private void setAdapter() {
+    private void setUpFilters() {
+        Switch filterSwitch = findViewById(R.id.FiltersSwitch);
+        Button searchButton = findViewById(R.id.submitFilterButton);
+        filterSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ConstraintLayout FilterWrap = findViewById(R.id.FilterWrap);
+                if (filterSwitch.isChecked()){
+                    FilterWrap.setVisibility(View.VISIBLE);
+                } else{
+                    FilterWrap.setVisibility(View.GONE);
+                }
+            }
+        });
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getMovies(true);
+            }
+        });
+
+        getGenres();
+    }
+
+    private void getFilters() {
+
+        //filteren
+        mGenre = mFilterAdapter.getFilteredGenres();
+
+        EditText minRating = findViewById(R.id.minRating);
+        if(!minRating.getText().toString().equals("")){
+            mRating = Integer.parseInt(minRating.getText().toString());
+        }
+
+        //sorteren
+
+        RadioButton name = findViewById(R.id.sortName);
+        RadioButton date = findViewById(R.id.sortDate);
+        RadioButton rating = findViewById(R.id.sortRating);
+
+        StringBuilder sortBuilder = new StringBuilder();
+        if(name.isChecked()){
+            sortBuilder.append("original_title");
+        } else if(date.isChecked()){
+            sortBuilder.append("release_date");
+        } else if(rating.isChecked()){
+            sortBuilder.append("vote_average");
+        }
+
+        Switch decendSwitch = findViewById(R.id.decendSwitch);
+        if(decendSwitch.isChecked()){
+            sortBuilder.append(".desc");
+        } else{
+            sortBuilder.append(".asc");
+        }
+
+        mSorting = sortBuilder.toString();
+
+    }
+
+    private void setAdapters() {
         mRecyclerView = findViewById(R.id.recyclerview);
         mAdapter = new MovieAdapter(this, nMovieList);
         mRecyclerView.setAdapter(mAdapter);
         int gridColumnCount = 2;
 
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, gridColumnCount));
+
+        //filters
+        mGenresRecyclerView = findViewById(R.id.GenresRecyclerView);
+        mFilterAdapter = new FilterAdapter(this, mGenreList);
+        mGenresRecyclerView.setAdapter(mFilterAdapter);
+        mGenresRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
     }
 
-    private void getAllMovies() {
-        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+    private void getGenres() {
 
-        Call<DiscoveredMovies> call = apiInterface.getMovies("1e2c1f57cbed4d3e0c5dcad5996f2649", page);
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        try{
+            Call<DiscoverGenres> call = apiInterface.getGenres("1e2c1f57cbed4d3e0c5dcad5996f2649");
+            call.enqueue(new Callback<DiscoverGenres>() {
+                @Override
+                public void onResponse(Call<DiscoverGenres> call, Response<DiscoverGenres> response) {
+                    DiscoverGenres genreList = response.body();
+                    mGenreList.addAll(genreList.getGenres());
+
+                    if(mGenreList != null){
+                        mFilterAdapter.setMGenreList(mGenreList);
+                        Log.d("Filters", mFilterAdapter.getItemCount() + "");
+                        mFilterAdapter.notifyDataSetChanged();
+                    } else {
+                        Log.e("GenreListGenres", mGenreList.toString());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<DiscoverGenres> call, Throwable t) {
+                    Log.e("MainActivity", t.toString());
+                }
+            });
+        }
+        catch (Exception e){
+            Log.e("GenreError", e.toString());
+        }
+    }
+
+    private void getMovies(Boolean filter) {
+        if(filter){
+            getFilters();
+        }
+
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        Call<DiscoveredMovies> call = apiInterface.getMovies("1e2c1f57cbed4d3e0c5dcad5996f2649", page, mRating, mGenre, mSorting);
 
         call.enqueue(new Callback<DiscoveredMovies>() {
             @Override
             public void onResponse(Call<DiscoveredMovies> call, Response<DiscoveredMovies> response) {
                 progressBar.setVisibility(View.GONE);
                 DiscoveredMovies movies = response.body();
+                if(filter){
+                    nMovieList.clear();
+                }
                 nMovieList.addAll(movies.getResults());
                 mAdapter.setMovieList(nMovieList);
             }
@@ -103,4 +228,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }
