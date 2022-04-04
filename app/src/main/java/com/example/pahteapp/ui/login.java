@@ -23,7 +23,6 @@ import retrofit2.Response;
 public class login extends AppCompatActivity {
     public static String SESSION_ID = "";
 
-
     private TextView mGuest;
     private Button mLogin;
     private Authenticate requestToken = new Authenticate();
