@@ -22,7 +22,8 @@ public interface ApiInterface {
             @Query("api_key") String apiKey,
             @Query("page") int page,
             @Query("vote_average.gte") Integer rating,
-            @Query("with_genres") String genre
+            @Query("with_genres") String genre,
+            @Query("sort_by") String sort
     );
 
     @GET("genre/movie/list")

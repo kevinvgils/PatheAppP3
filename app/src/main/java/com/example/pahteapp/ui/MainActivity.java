@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -44,8 +46,10 @@ public class MainActivity extends AppCompatActivity {
     private LinkedList<Genre> mGenreList = new LinkedList<>();
     private FilterAdapter mFilterAdapter;
     private RecyclerView mGenresRecyclerView;
+
     private String mGenre;
     private Integer mRating;
+    private String mSorting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,13 +101,38 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getFilters() {
+
+        //filteren
+        mGenre = mFilterAdapter.getFilteredGenres();
+
         EditText minRating = findViewById(R.id.minRating);
         if(!minRating.getText().toString().equals("")){
             mRating = Integer.parseInt(minRating.getText().toString());
         }
 
-        mGenre = mFilterAdapter.getFilteredGenres();
+        //sorteren
 
+        RadioButton name = findViewById(R.id.sortName);
+        RadioButton date = findViewById(R.id.sortDate);
+        RadioButton rating = findViewById(R.id.sortRating);
+
+        StringBuilder sortBuilder = new StringBuilder();
+        if(name.isChecked()){
+            sortBuilder.append("original_title");
+        } else if(date.isChecked()){
+            sortBuilder.append("release_date");
+        } else if(rating.isChecked()){
+            sortBuilder.append("vote_average");
+        }
+
+        Switch decendSwitch = findViewById(R.id.decendSwitch);
+        if(decendSwitch.isChecked()){
+            sortBuilder.append(".desc");
+        } else{
+            sortBuilder.append(".asc");
+        }
+
+        mSorting = sortBuilder.toString();
 
     }
 
@@ -159,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<DiscoveredMovies> call = apiInterface.getMovies("1e2c1f57cbed4d3e0c5dcad5996f2649", page, mRating, mGenre);
+        Call<DiscoveredMovies> call = apiInterface.getMovies("1e2c1f57cbed4d3e0c5dcad5996f2649", page, mRating, mGenre, mSorting);
 
         call.enqueue(new Callback<DiscoveredMovies>() {
             @Override
