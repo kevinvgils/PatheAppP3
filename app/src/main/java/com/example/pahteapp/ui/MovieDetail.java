@@ -60,7 +60,7 @@ public class MovieDetail extends AppCompatActivity {
     private void set_data(){
         movieTitle.setText(selectedMovie.getTitle());
         Picasso.get().load("https://image.tmdb.org/t/p/w500/" + selectedMovie.getBackdropPath()).into(movieBanner);
-        movieRating.setRating((int) Math.round(selectedMovie.getVoteAverage() / 2));
+        movieRating.setRating((float) (selectedMovie.getVoteAverage() / 2));
         movieRatingText.setText(selectedMovie.getVoteAverage() / 2 + " / 5");
         movieDuration.setText(selectedMovie.getRuntime() / 60 + "h " + selectedMovie.getRuntime() % 60 + "m");
         movieDescription.setText(selectedMovie.getOverview());
@@ -73,7 +73,7 @@ public class MovieDetail extends AppCompatActivity {
             genres = genres.substring(0, genres.length()-2);
             movieGenres.setText(genres);
         } else {
-            movieGenres.setText("Test");
+            movieGenres.setText("No genres found");
         }
     }
 
