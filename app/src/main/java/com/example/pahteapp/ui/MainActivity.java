@@ -94,7 +94,6 @@ public class MainActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.GONE);
                 DiscoveredMovies movies = response.body();
                 nMovieList.addAll(movies.getResults());
-                Log.d("MovieListMovies", nMovieList.toString());
                 mAdapter.setMovieList(nMovieList);
             }
 

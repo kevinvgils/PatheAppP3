@@ -2,6 +2,7 @@ package com.example.pahteapp.dataaccess;
 
 import com.example.pahteapp.domain.Authenticate;
 import com.example.pahteapp.domain.DiscoveredMovies;
+import com.example.pahteapp.domain.MovieList;
 import com.example.pahteapp.domain.PaginatedUserList;
 import com.example.pahteapp.domain.User;
 import com.example.pahteapp.domain.UserList;
@@ -62,5 +63,11 @@ public interface ApiInterface {
     Call<User> getUser(
             @Query("api_key") String apiKey,
             @Query("session_id") String sessionId
+    );
+
+    @GET("list/{list_id}")
+    Call<MovieList> getList(
+            @Path("list_id") Integer listId,
+            @Query("api_key") String apiKey
     );
 }

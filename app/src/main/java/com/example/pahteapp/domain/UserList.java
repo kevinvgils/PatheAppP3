@@ -3,6 +3,8 @@ package com.example.pahteapp.domain;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class UserList {
 
     @SerializedName("description")
@@ -29,6 +31,18 @@ public class UserList {
     @SerializedName("poster_path")
     @Expose
     private String posterPath;
+
+    @SerializedName("allMovies")
+    @Expose
+    private List<Movie> movies = null;
+
+    public List<Movie> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(List<Movie> movies) {
+        this.movies = movies;
+    }
 
     public String getDescription() {
         return description;
@@ -94,4 +108,12 @@ public class UserList {
         this.posterPath = posterPath;
     }
 
+    @Override
+    public String toString() {
+        return "UserList{" +
+                "description='" + description + '\'' +
+                ", id=" + id +
+                ", movies=" + movies +
+                '}';
+    }
 }
