@@ -31,6 +31,22 @@ public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.FilterView
         this.context = context;
     }
 
+    public String getFilteredGenres(){
+        StringBuilder outputString = new StringBuilder();
+
+        for (Genre genre: mGenreList) {
+            if(genre.getToFilter()){
+                outputString.append(genre.getId()).append(",");
+            }
+        }
+        if( outputString.length() > 0 ) {
+            outputString.deleteCharAt( outputString.length() - 1 );
+        } else{
+            Log.w("FilterAdapter", "No genres selected");
+        }
+        return outputString.toString();
+    }
+
     @NonNull
     @Override
     public FilterAdapter.FilterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -62,6 +78,17 @@ public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.FilterView
         public FilterViewHolder(View itemView, FilterAdapter adapter) {
             super(itemView);
             genreBox = itemView.findViewById(R.id.genreBox);
+
+            genreBox.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(genreBox.isChecked()){
+                        mGenreList.get(getAdapterPosition()).setToFilter(true);
+                    } else{
+                        mGenreList.get(getAdapterPosition()).setToFilter(false);
+                    }
+                }
+            });
         }
 
     }

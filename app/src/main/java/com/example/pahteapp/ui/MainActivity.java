@@ -102,8 +102,9 @@ public class MainActivity extends AppCompatActivity {
             mRating = Integer.parseInt(minRating.getText().toString());
         }
 
-        EditText title = findViewById(R.id.FilterMovieTitle);
-        mGenre = title.getText().toString();
+        mGenre = mFilterAdapter.getFilteredGenres();
+
+
     }
 
     private void setAdapters() {

@@ -12,6 +12,8 @@ public class Genre {
     @Expose
     private String name;
 
+    private boolean toFilter = false;
+
     public Integer getId() {
         return id;
     }
@@ -26,6 +28,14 @@ public class Genre {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean getToFilter(){
+        return toFilter;
+    }
+
+    public void setToFilter(boolean toFilter){
+        this.toFilter = toFilter;
     }
 
 }
