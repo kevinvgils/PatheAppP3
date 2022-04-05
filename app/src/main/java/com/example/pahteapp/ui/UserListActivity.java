@@ -21,7 +21,6 @@ import com.example.pahteapp.R;
 import com.example.pahteapp.dataaccess.ApiClient;
 import com.example.pahteapp.dataaccess.ApiInterface;
 import com.example.pahteapp.domain.Authenticate;
-import com.example.pahteapp.domain.CreateList;
 import com.example.pahteapp.domain.Movie;
 import com.example.pahteapp.domain.MovieList;
 import com.example.pahteapp.domain.PaginatedUserList;
@@ -93,17 +92,11 @@ public class UserListActivity extends AppCompatActivity {
 
     private void addList(String name){
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-
-        UserList userList = new UserList();
-        userList.setName(name);
-        userList.setDescription("test");
-        userList.setLanguage("nl");
-
         Call<Authenticate> call = apiInterface.createUserList(
                 "application/json;charset=utf-8",
                 "1e2c1f57cbed4d3e0c5dcad5996f2649",
                 SESSION_ID,
-                userList);
+                name);
 
         call.enqueue(new Callback<Authenticate>() {
             @Override

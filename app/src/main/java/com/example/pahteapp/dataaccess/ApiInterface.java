@@ -80,7 +80,7 @@ public interface ApiInterface {
             @Header("Content-Type") String charset,
             @Query("api_key") String apiKey,
             @Query("session_id") String sessionID,
-            @Body UserList listName
+            @Field("name") String name
     );
 
     @GET("account/{account_id}/lists")
