@@ -7,10 +7,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -91,28 +93,49 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setUpFilters() {
+        ConstraintLayout FilterWrap = findViewById(R.id.FilterWrap);
         Switch filterSwitch = findViewById(R.id.FiltersSwitch);
-        Button searchButton = findViewById(R.id.submitFilterButton);
+        Button filterButton = findViewById(R.id.submitFilterButton);
+        Button searchButton = findViewById(R.id.submitSearchButton);
         filterSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ConstraintLayout FilterWrap = findViewById(R.id.FilterWrap);
+
                 if (filterSwitch.isChecked()){
                     FilterWrap.setVisibility(View.VISIBLE);
                 } else{
-                    FilterWrap.setVisibility(View.GONE);
+                    hideFilters(view);
                 }
+            }
+        });
+
+        filterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getMovies(true);
+                hideFilters(view);
             }
         });
 
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getMovies(true);
+                EditText FilterMovieTitle = findViewById(R.id.FilterMovieTitle);
+                getMovie(FilterMovieTitle.getText().toString());
+                hideFilters(view);
             }
         });
 
         getGenres();
+    }
+
+    private void hideFilters(View view){
+        ConstraintLayout FilterWrap = findViewById(R.id.FilterWrap);
+        Switch filterSwitch = findViewById(R.id.FiltersSwitch);
+        FilterWrap.setVisibility(View.GONE);
+        filterSwitch.setChecked(false);
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     private void getFilters() {
@@ -195,6 +218,29 @@ public class MainActivity extends AppCompatActivity {
         catch (Exception e){
             Log.e("GenreError", e.toString());
         }
+    }
+
+    private void getMovie(String query) {
+
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        Call<DiscoveredMovies> call = apiInterface.getMoviesByName("1e2c1f57cbed4d3e0c5dcad5996f2649", query);
+
+        call.enqueue(new Callback<DiscoveredMovies>() {
+            @Override
+            public void onResponse(Call<DiscoveredMovies> call, Response<DiscoveredMovies> response) {
+                progressBar.setVisibility(View.GONE);
+                DiscoveredMovies movies = response.body();
+                nMovieList.clear();
+                nMovieList.addAll(movies.getResults());
+                Log.d("MovieListMovies", nMovieList.toString());
+                mAdapter.setMovieList(nMovieList);
+            }
+
+            @Override
+            public void onFailure(Call<DiscoveredMovies> call, Throwable t) {
+                Log.e("MainActivity", t.toString());
+            }
+        });
     }
 
     private void getMovies(Boolean filter) {

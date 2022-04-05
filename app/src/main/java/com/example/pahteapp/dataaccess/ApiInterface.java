@@ -6,10 +6,7 @@ import com.example.pahteapp.domain.DiscoveredMovies;
 import com.example.pahteapp.domain.MovieList;
 import com.example.pahteapp.domain.PaginatedUserList;
 import com.example.pahteapp.domain.User;
-
-
-
-import java.util.List;
+import com.example.pahteapp.domain.Movie;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -30,10 +27,22 @@ public interface ApiInterface {
             @Query("sort_by") String sort
     );
 
+    @GET("search/movie")
+    Call<DiscoveredMovies> getMoviesByName(
+            @Query("api_key") String apiKey,
+            @Query("query") String query
+    );
+
     @GET("genre/movie/list")
     Call<DiscoverGenres> getGenres(
             @Query("api_key") String apiKey
 
+    );
+
+    @GET("movie/{movie_id}")
+    Call<Movie> getMovie(
+            @Path("movie_id") Integer id,
+            @Query("api_key") String apiKey
     );
 
     @GET("authentication/token/new")
