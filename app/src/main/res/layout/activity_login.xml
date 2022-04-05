@@ -27,9 +27,10 @@
             android:id="@+id/UserName"
             android:layout_width="275dp"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
             android:autofillHints="Username"
+            android:ems="10"
+            android:hint="@string/userName"
+            android:inputType="textPersonName"
             tools:ignore="LabelFor" />
 
         <EditText
