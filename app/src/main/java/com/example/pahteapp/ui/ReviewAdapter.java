@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,6 +31,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
     static class ReviewViewHolder extends RecyclerView.ViewHolder {
         public final TextView reviewUser;
         public final TextView reviewContent;
+        private RatingBar userRating;
         public TextView reviewRating;
 
         final ReviewAdapter mAdapter;
@@ -37,6 +39,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
         public ReviewViewHolder(View itemView, ReviewAdapter adapter) {
             super(itemView);
             reviewUser = itemView.findViewById(R.id.reviewUserName);
+            userRating = itemView.findViewById(R.id.ratingBarReview);
             reviewContent = itemView.findViewById(R.id.reviewContent);
             reviewRating = itemView.findViewById(R.id.userRating);
             this.mAdapter = adapter;
@@ -60,7 +63,12 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
         Review mCurrent = nReviewList.get(position);
         holder.reviewUser.setText(mCurrent.getAuthor());
         holder.reviewContent.setText(Html.fromHtml(mCurrent.getContent()));
-        holder.reviewRating.setText(mCurrent.getAuthorDetails().getRating());
+        if (mCurrent.getAuthorDetails().getRating() == 69) {
+            holder.reviewRating.setText("No rating given");
+        } else {
+            holder.reviewRating.setText("" + mCurrent.getAuthorDetails().getRating() / 2);
+            holder.userRating.setRating((float) (mCurrent.getAuthorDetails().getRating() / 2));
+        }
     }
 
     @Override

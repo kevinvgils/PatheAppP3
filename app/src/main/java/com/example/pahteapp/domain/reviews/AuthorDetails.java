@@ -42,11 +42,11 @@ public class AuthorDetails {
         this.avatarPath = avatarPath;
     }
 
-    public String getRating() {
+    public Double getRating() {
         if (rating == null) {
-            return "no rating given";
+            return 69.0;
         } else  {
-            return "" + rating;
+            return rating * 1.0;
         }
     }
 
