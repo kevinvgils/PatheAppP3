@@ -3,6 +3,9 @@ package com.example.pahteapp.dataaccess;
 import com.example.pahteapp.domain.Authenticate;
 import com.example.pahteapp.domain.DiscoverGenres;
 import com.example.pahteapp.domain.DiscoveredMovies;
+import com.example.pahteapp.domain.MovieList;
+import com.example.pahteapp.domain.PaginatedUserList;
+import com.example.pahteapp.domain.User;
 import com.example.pahteapp.domain.Movie;
 import com.example.pahteapp.domain.reviews.PaginatedReviews;
 
@@ -69,10 +72,30 @@ public interface ApiInterface {
             @Query("api_key") String apiKey
     );
 
+<<<<<<< HEAD
     @GET("movie/{movie_id}/reviews")
     Call<PaginatedReviews> getMovieReviews(
             @Path("movie_id") Integer movieId,
             @Query("api_key") String apiKey,
             @Query("page") Integer page
+=======
+    @GET("account/{account_id}/lists")
+    Call<PaginatedUserList> getAllListsUser(
+            @Path("account_id") Integer accountId,
+            @Query("api_key") String apiKey,
+            @Query("session_id") String sessionId
+    );
+
+    @GET("account")
+    Call<User> getUser(
+            @Query("api_key") String apiKey,
+            @Query("session_id") String sessionId
+    );
+
+    @GET("list/{list_id}")
+    Call<MovieList> getList(
+            @Path("list_id") Integer listId,
+            @Query("api_key") String apiKey
+>>>>>>> 1e1335208aaf9988df9e7487fc0e179c35685d13
     );
 }
