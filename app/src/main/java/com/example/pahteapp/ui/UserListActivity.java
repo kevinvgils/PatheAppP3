@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.pahteapp.R;
 import com.example.pahteapp.dataaccess.ApiClient;
 import com.example.pahteapp.dataaccess.ApiInterface;
+import com.example.pahteapp.dataaccess.Logout;
 import com.example.pahteapp.domain.Movie;
 import com.example.pahteapp.domain.MovieList;
 import com.example.pahteapp.domain.PaginatedUserList;
@@ -50,6 +51,7 @@ public class UserListActivity extends AppCompatActivity {
                 } else if(item.getItemId() == R.id.logout) {
                     Intent intent = new Intent(getApplicationContext(), login.class);
                     startActivity(intent);
+                    Logout.doLogout(getApplicationContext());
                 }
 
                 return false;
