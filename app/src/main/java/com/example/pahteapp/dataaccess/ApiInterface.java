@@ -72,13 +72,13 @@ public interface ApiInterface {
             @Query("api_key") String apiKey
     );
 
-<<<<<<< HEAD
     @GET("movie/{movie_id}/reviews")
     Call<PaginatedReviews> getMovieReviews(
             @Path("movie_id") Integer movieId,
             @Query("api_key") String apiKey,
             @Query("page") Integer page
-=======
+    );
+
     @GET("account/{account_id}/lists")
     Call<PaginatedUserList> getAllListsUser(
             @Path("account_id") Integer accountId,
@@ -96,6 +96,5 @@ public interface ApiInterface {
     Call<MovieList> getList(
             @Path("list_id") Integer listId,
             @Query("api_key") String apiKey
->>>>>>> 1e1335208aaf9988df9e7487fc0e179c35685d13
     );
 }
