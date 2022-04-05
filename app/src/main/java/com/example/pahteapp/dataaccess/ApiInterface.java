@@ -7,8 +7,11 @@ import com.example.pahteapp.domain.MovieList;
 import com.example.pahteapp.domain.PaginatedUserList;
 import com.example.pahteapp.domain.User;
 import com.example.pahteapp.domain.Movie;
+import com.example.pahteapp.domain.reviews.PaginatedReviews;
 
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -71,6 +74,13 @@ public interface ApiInterface {
             @Query("api_key") String apiKey
     );
 
+    @GET("movie/{movie_id}/reviews")
+    Call<PaginatedReviews> getMovieReviews(
+            @Path("movie_id") Integer movieId,
+            @Query("api_key") String apiKey,
+            @Query("page") Integer page
+    );
+
     @GET("account/{account_id}/lists")
     Call<PaginatedUserList> getAllListsUser(
             @Path("account_id") Integer accountId,
@@ -89,4 +99,11 @@ public interface ApiInterface {
             @Path("list_id") Integer listId,
             @Query("api_key") String apiKey
     );
+
+    @DELETE("authentication/session")
+    Call<Authenticate> logout(
+            @Query("api_Key") String apiKey,
+            @Query("session_id") String sessionId
+    );
+
 }
