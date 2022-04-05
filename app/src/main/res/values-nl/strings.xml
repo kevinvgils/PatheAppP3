@@ -6,7 +6,6 @@
     <string name="login_button">Inloggen</string>
     <string name="login_no_account">Geen account?</string>
     <string name="login_as_guest">Doorgaan als gast?</string>
-    <string name="main_filters">Filters</string>
     <string name="main_search_movie">Film zoeken:</string>
     <string name="main_movie_title">Film titel</string>
     <string name="main_search">Zoeken</string>
@@ -21,4 +20,6 @@
     <string name="detail_submit">Indienen</string>
     <string name="list_edit">Bewerken</string>
     <string name="list_delete">Verwijderen</string>
+    <string name="menu_lists">Lijsten</string>
+    <string name="menu_logout">Uitloggen</string>
 </resources>

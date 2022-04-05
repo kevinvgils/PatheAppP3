@@ -3,8 +3,10 @@
     <item
         android:id="@+id/home"
         android:title="@string/menu_home" />
-    <item android:id="@+id/lists"
-        android:title="Lists" />
-    <item android:id="@+id/logout"
-        android:title="Logout"/>
+    <item
+        android:id="@+id/lists"
+        android:title="@string/menu_lists" />
+    <item
+        android:id="@+id/logout"
+        android:title="@string/menu_logout" />
 </menu>

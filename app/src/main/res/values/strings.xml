@@ -1,18 +1,18 @@
 <resources>
     <string name="app_name">PatheApp</string>
 
+    <string name="login_as_guest">Continue as guest?</string>
     <string name="login_password">Password</string>
     <string name="login_username">Username</string>
     <string name="login_button">Login</string>
     <string name="login_no_account">No account?</string>
-    <string name="login_as_guest">Continue as guest?</string>
 
-    <string name="main_filters">Filters</string>
     <string name="main_search_movie">Search movie:</string>
     <string name="main_movie_title">Movie title</string>
     <string name="main_search">Search</string>
-    <string name="main_genres" translatable="false">Genres</string>
     <string name="main_minimal_rating">Minimal rating</string>
+    <string name="main_genres" translatable="false">Genres</string>
+    <string name="main_filters" translatable="false">Filters</string>
     <string name="main_sort">Sort</string>
     <string name="main_name">Name</string>
     <string name="main_date">Date</string>
@@ -28,4 +28,7 @@
     <string name="list_delete">Delete</string>
 
     <string name="menu_home" translatable="false">Home</string>
+    <string name="menu_lists">Lists</string>
+    <string name="menu_logout">Logout</string>
+
 </resources>
