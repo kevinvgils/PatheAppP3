@@ -31,6 +31,9 @@ public class UserList {
     @SerializedName("poster_path")
     @Expose
     private String posterPath;
+    @SerializedName("language")
+    @Expose
+    private String language;
 
     @SerializedName("allMovies")
     @Expose
@@ -115,5 +118,13 @@ public class UserList {
                 ", id=" + id +
                 ", movies=" + movies +
                 '}';
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
     }
 }
