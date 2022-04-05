@@ -9,8 +9,6 @@
         <ImageView
             android:id="@+id/imageView_movie"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingStart="25dp"
-            android:paddingLeft="25dp"/>
+            android:layout_height="wrap_content"/>
     </RelativeLayout>
 </FrameLayout>

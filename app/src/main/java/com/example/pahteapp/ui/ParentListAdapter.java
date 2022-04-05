@@ -25,9 +25,11 @@ public class ParentListAdapter extends RecyclerView.Adapter<ParentListAdapter.Pa
     private RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
     private List<UserList> itemList;
     private Context context;
+    private LayoutInflater mInflater;
 
     ParentListAdapter(Context context, List<UserList> itemList)
     {
+        this.mInflater = LayoutInflater.from(context);
         this.itemList = itemList;
         this.context = context;
     }
@@ -38,11 +40,7 @@ public class ParentListAdapter extends RecyclerView.Adapter<ParentListAdapter.Pa
 
         // Here we inflate the corresponding
         // layout of the parent item
-        View view = LayoutInflater
-                .from(viewGroup.getContext())
-                .inflate(
-                        R.layout.list_movie,
-                        viewGroup, false);
+        View view = mInflater.inflate(R.layout.list_movie, viewGroup, false);
 
         return new ParentViewHolder(view);
     }
@@ -66,13 +64,6 @@ public class ParentListAdapter extends RecyclerView.Adapter<ParentListAdapter.Pa
         // Here we have assigned the layout
         // as LinearLayout with vertical orientation
         LinearLayoutManager layoutManager = new LinearLayoutManager(parentViewHolder.ChildRecyclerView.getContext(), LinearLayoutManager.HORIZONTAL, false);
-
-        // Since this is a nested layout, so
-        // to define how many child items
-        // should be prefetched when the
-        // child RecyclerView is nested
-        // inside the parent RecyclerView,
-        // we use the following method
         layoutManager.setInitialPrefetchItemCount(parentItem.getItemCount());
 
         // Create an instance of the child
