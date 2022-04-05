@@ -4,6 +4,7 @@ import com.example.pahteapp.domain.Authenticate;
 import com.example.pahteapp.domain.DiscoverGenres;
 import com.example.pahteapp.domain.DiscoveredMovies;
 import com.example.pahteapp.domain.Movie;
+import com.example.pahteapp.domain.reviews.PaginatedReviews;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -66,5 +67,12 @@ public interface ApiInterface {
     @POST("authentication/guest_session/new")
     Call<Authenticate> createGuestSession(
             @Query("api_key") String apiKey
+    );
+
+    @GET("movie/{movie_id}/reviews")
+    Call<PaginatedReviews> getMovieReviews(
+            @Path("movie_id") Integer movieId,
+            @Query("api_key") String apiKey,
+            @Query("page") Integer page
     );
 }
