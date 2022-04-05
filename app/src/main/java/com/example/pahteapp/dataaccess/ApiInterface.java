@@ -44,4 +44,11 @@ public interface ApiInterface {
     Call<Authenticate> createGuestSession(
             @Query("api_key") String apiKey
     );
+    @POST("/list")
+    Call<UserList> createUserList(
+            @Query("api_key") String apiKey,
+            @Query("session_id") String sessionID,
+            @Field("name") String listName
+
+    );
 }
