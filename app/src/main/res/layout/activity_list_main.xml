@@ -19,6 +19,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- This is the parent RecyclerView-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listRecyclerview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="58dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.043"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/AddFormWrap"
         android:layout_width="0dp"
@@ -36,8 +46,10 @@
             android:id="@+id/AddForm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:alpha="1"
             android:background="@drawable/roundbackgroundd"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="#FFFFFFFF"
+            android:backgroundTintMode="screen"
             android:padding="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -91,16 +103,6 @@
                 tools:srcCompat="@drawable/o_2235" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listRecyclerview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="58dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.043"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addButton"

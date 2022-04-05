@@ -1,7 +1,6 @@
 package com.example.pahteapp.dataaccess;
 
 import com.example.pahteapp.domain.Authenticate;
-import com.example.pahteapp.domain.CreateList;
 import com.example.pahteapp.domain.DiscoverGenres;
 import com.example.pahteapp.domain.DiscoveredMovies;
 import com.example.pahteapp.domain.MovieList;
@@ -80,7 +79,7 @@ public interface ApiInterface {
             @Header("Content-Type") String charset,
             @Query("api_key") String apiKey,
             @Query("session_id") String sessionID,
-            @Field("name") String name
+            @Body UserList list
     );
 
     @GET("account/{account_id}/lists")

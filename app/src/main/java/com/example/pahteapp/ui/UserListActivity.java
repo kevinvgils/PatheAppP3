@@ -24,6 +24,7 @@ import com.example.pahteapp.domain.Authenticate;
 import com.example.pahteapp.domain.Movie;
 import com.example.pahteapp.domain.MovieList;
 import com.example.pahteapp.domain.PaginatedUserList;
+import com.example.pahteapp.domain.User;
 import com.example.pahteapp.domain.UserList;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -76,6 +77,14 @@ public class UserListActivity extends AppCompatActivity {
             }
         });
 
+        mAddFormWrap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mAddFormWrap.setVisibility(View.GONE);
+                mAddButton.setVisibility(View.VISIBLE);
+            }
+        });
+
         Button submitButton = findViewById(R.id.SubmitButton);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,12 +100,18 @@ public class UserListActivity extends AppCompatActivity {
 
 
     private void addList(String name){
+
+        UserList list = new UserList();
+        list.setName(name);
+        list.setDescription("");
+        list.setLanguage("en");
+
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
         Call<Authenticate> call = apiInterface.createUserList(
                 "application/json;charset=utf-8",
                 "1e2c1f57cbed4d3e0c5dcad5996f2649",
                 SESSION_ID,
-                name);
+                list);
 
         call.enqueue(new Callback<Authenticate>() {
             @Override
