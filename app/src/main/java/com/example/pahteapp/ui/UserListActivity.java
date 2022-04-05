@@ -133,10 +133,6 @@ public class UserListActivity extends AppCompatActivity {
         });
     }
 
-    private void editList(){
-
-    }
-
     private void getAllLists() {
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
