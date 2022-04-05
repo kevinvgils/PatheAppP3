@@ -37,15 +37,6 @@
         app:layout_constraintStart_toEndOf="@+id/ratingBarReview"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/maxRating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:text="/5"
-        app:layout_constraintStart_toEndOf="@+id/userRating"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <RatingBar
         android:id="@+id/ratingBarReview"
         style="?android:attr/ratingBarStyleSmall"

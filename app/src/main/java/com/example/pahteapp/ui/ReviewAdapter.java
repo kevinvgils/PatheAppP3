@@ -66,7 +66,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
         if (mCurrent.getAuthorDetails().getRating() == 69) {
             holder.reviewRating.setText("No rating given");
         } else {
-            holder.reviewRating.setText("" + mCurrent.getAuthorDetails().getRating() / 2);
+            holder.reviewRating.setText(mCurrent.getAuthorDetails().getRating() / 2 + "/5");
             holder.userRating.setRating((float) (mCurrent.getAuthorDetails().getRating() / 2));
         }
     }
