@@ -9,13 +9,21 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pahteapp.R;
 import com.example.pahteapp.dataaccess.ApiClient;
 import com.example.pahteapp.dataaccess.ApiInterface;
 import com.example.pahteapp.domain.DiscoveredMovies;
 import com.example.pahteapp.domain.Movie;
+import com.example.pahteapp.domain.reviews.PaginatedReviews;
+import com.example.pahteapp.domain.reviews.Review;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,8 +39,13 @@ public class MovieDetail extends AppCompatActivity {
     private TextView movieDuration;
     private TextView movieGenres;
     private TextView movieDescription;
-    //private RatingBar reviewRating;
-    //private Button reviewSubmitButton;
+    private ReviewAdapter mAdapter;
+
+    private final List<Review> nReviewList = new ArrayList<>();
+    Integer page = 1;
+
+    private RecyclerView mRecyclerView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +60,17 @@ public class MovieDetail extends AppCompatActivity {
         movieDuration = findViewById(R.id.movieDuration);
         movieGenres = findViewById(R.id.movieGenres);
         movieDescription = findViewById(R.id.movieDescription);
-        //reviewRating = findViewById(R.id.reviewRating);
-        //reviewSubmitButton = findViewById(R.id.reviewSubmitButton);
 
+        setAdapter();
         getMovie();
+    }
+
+    private void setAdapter() {
+        mRecyclerView = findViewById(R.id.reviewRecyclerView);
+        mAdapter = new ReviewAdapter(this, nReviewList);
+        mRecyclerView.setAdapter(mAdapter);
+
+        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 1));
     }
 
     private Integer getId(){
@@ -88,6 +108,7 @@ public class MovieDetail extends AppCompatActivity {
                 selectedMovie = response.body();
                 Log.d("Response", getId() + "");
                 set_data();
+                getReview();
             }
 
             @Override
@@ -95,5 +116,26 @@ public class MovieDetail extends AppCompatActivity {
                 Log.e("MainActivity", t.toString());
             }
         });
+    }
+
+    private void getReview() {
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+
+        Call<PaginatedReviews> call = apiInterface.getMovieReviews(getId(), "1e2c1f57cbed4d3e0c5dcad5996f2649", page);
+
+        call.enqueue(new Callback<PaginatedReviews>() {
+            @Override
+            public void onResponse(Call<PaginatedReviews> call, Response<PaginatedReviews> response) {
+                PaginatedReviews paginatedReviews = response.body();
+                nReviewList.addAll(paginatedReviews.getResults());
+                mAdapter.setReviewList(nReviewList);
+            }
+
+            @Override
+            public void onFailure(Call<PaginatedReviews> call, Throwable t) {
+
+            }
+        });
+
     }
 }

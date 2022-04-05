@@ -12,14 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.pahteapp.R;
 import com.example.pahteapp.domain.reviews.Review;
 
-import java.util.LinkedList;
+import java.util.List;
 
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder> {
-    private LinkedList<Review> nReviewList;
+    private List<Review> nReviewList;
     private LayoutInflater mInflater;
     private Context context;
 
-    public ReviewAdapter(Context context, LinkedList<Review> reviews) {
+    public ReviewAdapter(Context context, List<Review> reviews) {
         mInflater = LayoutInflater.from(context);
         this.nReviewList = reviews;
         this.context = context;
@@ -41,7 +41,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
         }
     }
 
-    public void setReviewList(LinkedList<Review> reviewList) {
+    public void setReviewList(List<Review> reviewList) {
         this.nReviewList = reviewList;
         notifyDataSetChanged();
     }
