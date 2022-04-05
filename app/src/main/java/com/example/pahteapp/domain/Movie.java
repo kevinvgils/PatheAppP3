@@ -1,9 +1,10 @@
 package com.example.pahteapp.domain;
 
+import java.io.Serializable;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-public class Movie {
+public class Movie implements Serializable {
 
     @SerializedName("poster_path")
     @Expose
@@ -17,6 +18,9 @@ public class Movie {
     @SerializedName("release_date")
     @Expose
     private String releaseDate;
+    @SerializedName("runtime")
+    @Expose
+    private Integer runtime;
     @SerializedName("genre_ids")
     @Expose
     private List<Integer> genreIds = null;
@@ -79,6 +83,10 @@ public class Movie {
     public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
     }
+
+    public Integer getRuntime() { return runtime; }
+
+    public void setRuntime(Integer runtime) { this.runtime = runtime; }
 
     public List<Integer> getGenreIds() {
         return genreIds;
