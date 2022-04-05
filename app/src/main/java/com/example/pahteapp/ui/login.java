@@ -24,6 +24,7 @@ import retrofit2.Response;
 public class login extends AppCompatActivity {
     public static String SESSION_ID = "";
     public static User USER_INFO = null;
+    public static Boolean IS_GUEST = false;
 
     private TextView mGuest;
     private Button mLogin;
@@ -172,6 +173,7 @@ public class login extends AppCompatActivity {
                             Log.d("SessionCreated", SESSION_ID);
                             Toast.makeText(getApplicationContext(), "Successfully logged in as guest!", Toast.LENGTH_SHORT).show();
                             Log.d("LOGIN", "Signed in as guest");
+                            IS_GUEST = true;
                             Intent intent = new Intent(view.getContext(), MainActivity.class);
                             view.getContext().startActivity(intent);
                         } else {

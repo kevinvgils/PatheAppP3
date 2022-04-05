@@ -1,5 +1,7 @@
 package com.example.pahteapp.ui;
 
+import static com.example.pahteapp.ui.login.IS_GUEST;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -16,6 +18,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 import android.widget.Toolbar;
 import android.widget.RadioButton;
 import android.widget.Switch;
@@ -67,8 +70,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if(item.getItemId() == R.id.lists) {
-                    Intent intent = new Intent(getApplicationContext(), UserListActivity.class);
-                    startActivity(intent);
+                    if(IS_GUEST) {
+                        Toast.makeText(getApplicationContext(), "Can't view lists as guest", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Intent intent = new Intent(getApplicationContext(), UserListActivity.class);
+                        startActivity(intent);
+                    }
                 } else if(item.getItemId() == R.id.logout) {
                     Intent intent = new Intent(getApplicationContext(), login.class);
                     startActivity(intent);
