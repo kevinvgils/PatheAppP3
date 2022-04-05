@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PatheApp</string>
+    <string name="rating">Beoordeling:</string>
+    <string name="review">Beoordeling</string>
+    <string name="reviews">Beoordelingen</string>
+    <string name="reviews">Beoordelingen</string>
+    <string name="login_username">Gebruikersnaam</string>
+    <string name="movie_poster">Film poster</string>
+    <string name="description">Beschrijving</string>
+    <string name="login_password">Wachtwoord</string>
+    <string name="login_button">Inloggen</string>
+    <string name="login_no_account">Geen account?</string>
+    <string name="login_as_guest">Doorgaan als gast?</string>
+    <string name="main_filters">Filters</string>
+    <string name="main_search_movie">Film zoeken:</string>
+    <string name="main_movie_title">Film titel</string>
+    <string name="main_search">Zoeken</string>
+    <string name="main_minimal_rating">Minimale beoordeling</string>
+    <string name="main_sort">Sorteren</string>
+    <string name="main_name">Naam</string>
+    <string name="main_date">Datum</string>
+    <string name="main_rating">Beoordeling</string>
+    <string name="main_descending">Aflopend</string>
+    <string name="detail_reviews">Beoordelingen</string>
+    <string name="detail_rating">Beoordeling:</string>
+</resources>

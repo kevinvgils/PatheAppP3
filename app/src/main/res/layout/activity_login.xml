@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:autofillHints="Username"
             android:ems="10"
-            android:hint="@string/userName"
+            android:hint="@string/login_username"
             android:inputType="textPersonName"
             tools:ignore="LabelFor" />
 
@@ -38,9 +38,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:ems="10"
-            android:inputType="textPassword"
             android:autofillHints="Password"
+            android:ems="10"
+            android:hint="@string/login_password"
+            android:inputType="textPassword"
             tools:ignore="LabelFor" />
 
         <Button
@@ -48,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/login" />
+            android:text="@string/login_button" />
 
         <View
             android:id="@+id/divider"
@@ -62,7 +63,7 @@
             android:id="@+id/RegisterButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/geen_account" />
+            android:text="@string/login_no_account" />
 
         <TextView
             android:id="@+id/GuestLink"
@@ -70,7 +71,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="4dp"
             android:layout_weight="1"
-            android:text="@string/doorgaan_als_gast"
+            android:text="@string/login_as_guest"
             android:textAllCaps="false"
             android:textSize="16sp"
             android:textStyle="bold" />
