@@ -25,6 +25,7 @@
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
@@ -37,7 +38,8 @@
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            tools:visibility="visible">
 
             <TextView
                 android:id="@+id/SearchMovieText"
@@ -65,11 +67,10 @@
                 android:id="@+id/divider2"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="8dp"
                 android:background="?android:attr/listDivider"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/FilterMovieTitle" />
+                app:layout_constraintTop_toBottomOf="@+id/submitSearchButton" />
 
             <TextView
                 android:id="@+id/GenreText"
@@ -186,10 +187,19 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:text="Zoek"
+                android:text="Filter"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/decendSwitch" />
+
+            <Button
+                android:id="@+id/submitSearchButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Zoek"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/FilterMovieTitle" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
