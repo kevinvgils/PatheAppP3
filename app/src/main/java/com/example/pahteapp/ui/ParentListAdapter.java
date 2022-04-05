@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.pahteapp.R;
@@ -27,11 +28,18 @@ public class ParentListAdapter extends RecyclerView.Adapter<ParentListAdapter.Pa
     private Context context;
     private LayoutInflater mInflater;
 
+    private Integer movieID;
+
+
     ParentListAdapter(Context context, List<UserList> itemList)
     {
         this.mInflater = LayoutInflater.from(context);
         this.itemList = itemList;
         this.context = context;
+    }
+
+    public void setMovieID(Integer id){
+        movieID = id;
     }
 
     @NonNull
@@ -47,6 +55,10 @@ public class ParentListAdapter extends RecyclerView.Adapter<ParentListAdapter.Pa
 
     @Override
     public void onBindViewHolder(@NonNull ParentViewHolder parentViewHolder, int position) {
+
+        if(movieID != -1){
+            parentViewHolder.imgButton.setVisibility(View.VISIBLE);
+        }
 
         // Create an instance of the ParentItem
         // class for the given position
@@ -99,13 +111,16 @@ public class ParentListAdapter extends RecyclerView.Adapter<ParentListAdapter.Pa
     class ParentViewHolder
             extends RecyclerView.ViewHolder {
 
+        private ImageView imgButton;
         private TextView ParentItemTitle;
+
         private RecyclerView ChildRecyclerView;
 
         ParentViewHolder(final View itemView)
         {
             super(itemView);
 
+            imgButton = itemView.findViewById(R.id.ConnectMovieToListButton);
             ParentItemTitle = itemView.findViewById(R.id.listName);
             ChildRecyclerView = itemView.findViewById(R.id.child_recyclerview);
         }

@@ -195,6 +195,10 @@ public class UserListActivity extends AppCompatActivity {
         // using a method ParentItemList()
         parentListAdapter = new ParentListAdapter(this, nUserList);
 
+        Intent intent = getIntent();
+
+        parentListAdapter.setMovieID(intent.getIntExtra("movie", -1));
+
         // Set the layout manager
         // and adapter for items
         // of the parent recyclerview
