@@ -63,6 +63,18 @@ public class MovieDetail extends AppCompatActivity {
 
         setAdapter();
         getMovie();
+
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+
+                if (!recyclerView.canScrollVertically(1)) {
+                    page++;
+                    getReview();
+                }
+            }
+        });
     }
 
     private void setAdapter() {
@@ -128,6 +140,7 @@ public class MovieDetail extends AppCompatActivity {
             public void onResponse(Call<PaginatedReviews> call, Response<PaginatedReviews> response) {
                 PaginatedReviews paginatedReviews = response.body();
                 nReviewList.addAll(paginatedReviews.getResults());
+                Log.d("Review", nReviewList.toString());
                 mAdapter.setReviewList(nReviewList);
             }
 

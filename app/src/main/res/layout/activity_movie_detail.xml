@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:fillViewport="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -11,11 +12,11 @@
         android:layout_height="200dp"
         android:contentDescription="@string/moviebanner"
         android:scaleType="centerCrop"
+        android:tint="#8B000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ImageContrastCheck"
-        tools:srcCompat="@tools:sample/avatars"
-        app:tint="#8B000000" />
+        tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/movieTitle"
@@ -133,9 +134,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/reviewRecyclerView"
-        android:layout_width="59dp"
-        android:layout_height="286dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/reviewRating" />
 

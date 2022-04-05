@@ -83,4 +83,16 @@ public class Review {
         this.url = url;
     }
 
+    @Override
+    public String toString() {
+        return "Review{" +
+                "author='" + author + '\'' +
+                ", authorDetails=" + authorDetails +
+                ", content='" + content + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                ", id='" + id + '\'' +
+                ", updatedAt='" + updatedAt + '\'' +
+                ", url='" + url + '\'' +
+                '}';
+    }
 }

@@ -1,6 +1,8 @@
 package com.example.pahteapp.ui;
 
 import android.content.Context;
+import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +30,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
     static class ReviewViewHolder extends RecyclerView.ViewHolder {
         public final TextView reviewUser;
         public final TextView reviewContent;
-        public final TextView reviewRating;
+        public TextView reviewRating;
 
         final ReviewAdapter mAdapter;
 
@@ -36,7 +38,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
             super(itemView);
             reviewUser = itemView.findViewById(R.id.reviewUserName);
             reviewContent = itemView.findViewById(R.id.reviewContent);
-            reviewRating = itemView.findViewById(R.id.reviewRating);
+            reviewRating = itemView.findViewById(R.id.userRating);
             this.mAdapter = adapter;
         }
     }
@@ -57,13 +59,13 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
     public void onBindViewHolder(@NonNull ReviewViewHolder holder, int position) {
         Review mCurrent = nReviewList.get(position);
         holder.reviewUser.setText(mCurrent.getAuthor());
-        holder.reviewContent.setText(mCurrent.getContent());
+        holder.reviewContent.setText(Html.fromHtml(mCurrent.getContent()));
         holder.reviewRating.setText(mCurrent.getAuthorDetails().getRating());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return nReviewList.size();
     }
 }
 

@@ -42,8 +42,12 @@ public class AuthorDetails {
         this.avatarPath = avatarPath;
     }
 
-    public Integer getRating() {
-        return rating;
+    public String getRating() {
+        if (rating == null) {
+            return "no rating given";
+        } else  {
+            return "" + rating;
+        }
     }
 
     public void setRating(Integer rating) {
