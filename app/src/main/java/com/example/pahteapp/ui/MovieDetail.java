@@ -40,6 +40,7 @@ public class MovieDetail extends AppCompatActivity {
     private TextView movieGenres;
     private TextView movieDescription;
     private ReviewAdapter mAdapter;
+    private PaginatedReviews paginatedReviews;
 
     private final List<Review> nReviewList = new ArrayList<>();
     Integer page = 1;
@@ -63,18 +64,6 @@ public class MovieDetail extends AppCompatActivity {
 
         setAdapter();
         getMovie();
-
-        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-
-                if (!recyclerView.canScrollVertically(1)) {
-                    page++;
-                    getReview();
-                }
-            }
-        });
     }
 
     private void setAdapter() {
@@ -138,10 +127,22 @@ public class MovieDetail extends AppCompatActivity {
         call.enqueue(new Callback<PaginatedReviews>() {
             @Override
             public void onResponse(Call<PaginatedReviews> call, Response<PaginatedReviews> response) {
-                PaginatedReviews paginatedReviews = response.body();
+                paginatedReviews = response.body();
                 nReviewList.addAll(paginatedReviews.getResults());
-                Log.d("Review", nReviewList.toString());
+                Log.d("Review", "" + paginatedReviews.getTotalPages());
                 mAdapter.setReviewList(nReviewList);
+                mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                    @Override
+                    public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                        super.onScrollStateChanged(recyclerView, newState);
+
+                        if (!recyclerView.canScrollVertically(1) && !(page > paginatedReviews.getTotalPages())) {
+                            Log.d("Scroll", "Bottom reached");
+                            page++;
+                            getReview();
+                        }
+                    }
+                });
             }
 
             @Override

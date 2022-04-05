@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/reviewUserName"
@@ -13,7 +13,7 @@
         android:layout_marginTop="16dp"
         android:text="(Username)"
         android:textStyle="bold"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,8 +31,8 @@
         android:id="@+id/userRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="19dp"
         android:text="0"
         app:layout_constraintStart_toEndOf="@+id/reviewUserName"
         app:layout_constraintTop_toTopOf="parent" />
@@ -41,7 +41,7 @@
         android:id="@+id/maxRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="19dp"
         android:text="/10"
         app:layout_constraintStart_toEndOf="@+id/userRating"
         app:layout_constraintTop_toTopOf="parent" />
