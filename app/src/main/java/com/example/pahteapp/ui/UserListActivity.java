@@ -3,8 +3,11 @@ package com.example.pahteapp.ui;
 import static com.example.pahteapp.ui.login.SESSION_ID;
 import static com.example.pahteapp.ui.login.USER_INFO;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
+import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -32,6 +35,26 @@ public class UserListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_main);
+
+        getSupportActionBar().hide();
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("PatheApp");
+        toolbar.inflateMenu(R.menu.main_menu);
+
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if (item.getItemId() == R.id.home) {
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                } else if(item.getItemId() == R.id.logout) {
+                    Intent intent = new Intent(getApplicationContext(), login.class);
+                    startActivity(intent);
+                }
+
+                return false;
+            }
+        });
 
         setAdapter();
         getAllLists();
@@ -104,12 +127,5 @@ public class UserListActivity extends AppCompatActivity {
         ParentRecyclerViewItem.setAdapter(parentListAdapter);
         ParentRecyclerViewItem.setLayoutManager(layoutManager);
     }
-
-//        mRecyclerView = findViewById(R.id.listRecyclerview);
-//        mAdapter = new ListAdapter(this, nUserList);
-//        mRecyclerView.setAdapter(mAdapter);
-//        int gridColumnCount = 1;
-//
-//        mRecyclerView.setLayoutManager(new GridLayoutManager(this, gridColumnCount));
-    }
+}
 

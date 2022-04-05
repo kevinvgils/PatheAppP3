@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.pahteapp.R;
 import com.example.pahteapp.domain.Movie;
@@ -42,6 +43,8 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.Movi
         // the ImageViews because we have
         // provided the source for the images
         // in the layout file itself
+        childViewHolder.desc.setText(childItem.getOverview());
+        childViewHolder.title.setText(childItem.getTitle());
         Picasso.get().load("https://image.tmdb.org/t/p/w500/" + childItem.getPosterPath()).into(childViewHolder.movieImage);
     }
 
@@ -65,11 +68,18 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.Movi
     class MovieViewHolder extends RecyclerView.ViewHolder {
 
         ImageView movieImage;
+        TextView title;
+        TextView desc;
+
+
 
         MovieViewHolder(View itemView)
         {
             super(itemView);
             movieImage = itemView.findViewById(R.id.imageView_movie);
+            title = itemView.findViewById(R.id.listMovieTitle);
+            desc = itemView.findViewById(R.id.listMovieDescription);
+
         }
     }
 }

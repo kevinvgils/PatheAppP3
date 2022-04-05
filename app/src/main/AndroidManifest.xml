@@ -27,13 +27,12 @@
 
         </activity>
         <activity
-<<<<<<< HEAD
-            android:name=".ui.UserListActivity"
-=======
             android:name=".ui.MovieDetail"
->>>>>>> 0483c5b2cb3ec99949df1bdef962783f65464797
             android:exported="false">
-
+        </activity>
+        <activity
+            android:name=".ui.UserListActivity"
+            android:exported="false">
         </activity>
     </application>
 

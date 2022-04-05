@@ -66,10 +66,11 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                if (item.getItemId() == R.id.home) {
-                    return false;
-                } else if(item.getItemId() == R.id.lists) {
+                if(item.getItemId() == R.id.lists) {
                     Intent intent = new Intent(getApplicationContext(), UserListActivity.class);
+                    startActivity(intent);
+                } else if(item.getItemId() == R.id.logout) {
+                    Intent intent = new Intent(getApplicationContext(), login.class);
                     startActivity(intent);
                 }
 

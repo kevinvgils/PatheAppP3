@@ -18,4 +18,6 @@
     <string name="geen_account">Geen account?</string>
     <string name="login">Login</string>
     <string name="listnamehere">ListNameHere</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
 </resources>
