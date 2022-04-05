@@ -1,10 +1,13 @@
 package com.example.pahteapp.ui;
 
+import static com.example.pahteapp.ui.login.SESSION_ID;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,9 +16,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.pahteapp.R;
+import com.example.pahteapp.dataaccess.ApiClient;
+import com.example.pahteapp.dataaccess.ApiInterface;
+import com.example.pahteapp.domain.Authenticate;
+import com.example.pahteapp.domain.Movie;
 import com.example.pahteapp.domain.UserList;
 
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ParentListAdapter extends RecyclerView.Adapter<ParentListAdapter.ParentViewHolder> {
 
@@ -64,6 +75,8 @@ public class ParentListAdapter extends RecyclerView.Adapter<ParentListAdapter.Pa
         // class for the given position
         UserList parentItem = itemList.get(position);
 
+        parentViewHolder.list_id = parentItem.getId();
+
         // For the created instance,
         // get the title and set it
         // as the text for the TextView
@@ -108,9 +121,9 @@ public class ParentListAdapter extends RecyclerView.Adapter<ParentListAdapter.Pa
     // This class is to initialize
     // the Views present in
     // the parent RecyclerView
-    class ParentViewHolder
-            extends RecyclerView.ViewHolder {
+    class ParentViewHolder extends RecyclerView.ViewHolder {
 
+        protected int list_id;
         private ImageView imgButton;
         private TextView ParentItemTitle;
 
@@ -123,6 +136,48 @@ public class ParentListAdapter extends RecyclerView.Adapter<ParentListAdapter.Pa
             imgButton = itemView.findViewById(R.id.ConnectMovieToListButton);
             ParentItemTitle = itemView.findViewById(R.id.listName);
             ChildRecyclerView = itemView.findViewById(R.id.child_recyclerview);
+
+            imgButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.d("OnClick_event","imgButton pressed");
+                    addMovie();
+                }
+            });
+        }
+
+        private void addMovie(){
+            Log.d("Movie", movieID.toString());
+            Movie movie = new Movie();
+            movie.setMedia_id(movieID);
+
+            ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+            Call<Authenticate> call = apiInterface.addMovieToList(
+                    list_id,
+                    "application/json;charset=utf-8",
+                    "1e2c1f57cbed4d3e0c5dcad5996f2649",
+                    SESSION_ID,
+                    movie);
+
+            call.enqueue(new Callback<Authenticate>() {
+                @Override
+                public void onResponse(Call<Authenticate> call, Response<Authenticate> response) {
+                    if (!response.isSuccessful()) {
+                        Log.e("Error", response.toString());
+                        return;
+                    }
+                    Authenticate addedUserList = response.body();
+                    Log.d("AddMovie","add successfull " + addedUserList.toString());
+                    Intent intent = new Intent(context, MovieDetail.class);
+                    intent.putExtra("id", movieID);
+                    context.startActivity(intent);
+                }
+
+                @Override
+                public void onFailure(Call<Authenticate> call, Throwable t) {
+                    Log.e("UserList", t.toString());
+                }
+            });
         }
     }
 }

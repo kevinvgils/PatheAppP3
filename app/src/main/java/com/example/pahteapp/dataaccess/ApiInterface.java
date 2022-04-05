@@ -83,13 +83,12 @@ public interface ApiInterface {
     );
 
     @POST("list/{list_id}/add_item")
-    @FormUrlEncoded
     Call<Authenticate> addMovieToList(
-            @Path("list_id") String list_id,
+            @Path("list_id") Integer list_id,
             @Header("Content-Type") String charset,
             @Query("api_key") String apiKey,
             @Query("session_id") String sessionID,
-            @Field("media_id") Integer movieID
+            @Body Movie movie
     );
 
     @GET("account/{account_id}/lists")

@@ -100,7 +100,6 @@ public class UserListActivity extends AppCompatActivity {
 
 
     private void addList(String name){
-
         UserList list = new UserList();
         list.setName(name);
         list.setDescription("");
