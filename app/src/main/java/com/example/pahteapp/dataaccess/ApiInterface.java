@@ -3,6 +3,9 @@ package com.example.pahteapp.dataaccess;
 import com.example.pahteapp.domain.Authenticate;
 import com.example.pahteapp.domain.DiscoverGenres;
 import com.example.pahteapp.domain.DiscoveredMovies;
+import com.example.pahteapp.domain.MovieList;
+import com.example.pahteapp.domain.PaginatedUserList;
+import com.example.pahteapp.domain.User;
 import com.example.pahteapp.domain.Movie;
 
 import retrofit2.Call;
@@ -65,6 +68,25 @@ public interface ApiInterface {
 
     @POST("authentication/guest_session/new")
     Call<Authenticate> createGuestSession(
+            @Query("api_key") String apiKey
+    );
+
+    @GET("account/{account_id}/lists")
+    Call<PaginatedUserList> getAllListsUser(
+            @Path("account_id") Integer accountId,
+            @Query("api_key") String apiKey,
+            @Query("session_id") String sessionId
+    );
+
+    @GET("account")
+    Call<User> getUser(
+            @Query("api_key") String apiKey,
+            @Query("session_id") String sessionId
+    );
+
+    @GET("list/{list_id}")
+    Call<MovieList> getList(
+            @Path("list_id") Integer listId,
             @Query("api_key") String apiKey
     );
 }

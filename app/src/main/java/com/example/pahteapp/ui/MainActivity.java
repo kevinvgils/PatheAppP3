@@ -1,23 +1,27 @@
 package com.example.pahteapp.ui;
 
+import static com.example.pahteapp.ui.login.IS_GUEST;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
+import android.widget.Toolbar;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Switch;
-import android.widget.TextView;
 
 import com.example.pahteapp.R;
 import com.example.pahteapp.dataaccess.ApiClient;
@@ -27,11 +31,7 @@ import com.example.pahteapp.domain.DiscoveredMovies;
 import com.example.pahteapp.domain.Genre;
 import com.example.pahteapp.domain.Movie;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -57,10 +57,33 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().hide();
         progressBar = findViewById(R.id.progress_bar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("PatheApp");
+        toolbar.inflateMenu(R.menu.main_menu);
         setAdapters();
         getMovies(false);
         setUpFilters();
+
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if(item.getItemId() == R.id.lists) {
+                    if(IS_GUEST) {
+                        Toast.makeText(getApplicationContext(), "Can't view lists as guest", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Intent intent = new Intent(getApplicationContext(), UserListActivity.class);
+                        startActivity(intent);
+                    }
+                } else if(item.getItemId() == R.id.logout) {
+                    Intent intent = new Intent(getApplicationContext(), login.class);
+                    startActivity(intent);
+                }
+
+                return false;
+            }
+        });
 
         //Waneer laatste item gehaald in recyclerview haal volgende pagina op
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -245,7 +268,6 @@ public class MainActivity extends AppCompatActivity {
                     nMovieList.clear();
                 }
                 nMovieList.addAll(movies.getResults());
-                Log.d("MovieListMovies", nMovieList.toString());
                 mAdapter.setMovieList(nMovieList);
             }
 

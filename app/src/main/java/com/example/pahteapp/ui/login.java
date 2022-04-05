@@ -15,6 +15,7 @@ import com.example.pahteapp.R;
 import com.example.pahteapp.dataaccess.ApiClient;
 import com.example.pahteapp.dataaccess.ApiInterface;
 import com.example.pahteapp.domain.Authenticate;
+import com.example.pahteapp.domain.User;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,6 +23,8 @@ import retrofit2.Response;
 
 public class login extends AppCompatActivity {
     public static String SESSION_ID = "";
+    public static User USER_INFO = null;
+    public static Boolean IS_GUEST = false;
 
     private TextView mGuest;
     private Button mLogin;
@@ -113,6 +116,7 @@ public class login extends AppCompatActivity {
                     Authenticate session = response.body();
                     SESSION_ID = session.getSessionId();
                     Log.d("SessionCreated", SESSION_ID);
+                    getUserInfo();
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                     Toast.makeText(getApplicationContext(), "Successfully logged in", Toast.LENGTH_SHORT).show();
@@ -127,6 +131,26 @@ public class login extends AppCompatActivity {
                 Log.d("LoginFail", t.toString());
             }
         });
+    }
+
+    private void getUserInfo() {
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+
+        Call<User> call = apiInterface.getUser("1e2c1f57cbed4d3e0c5dcad5996f2649", SESSION_ID);
+
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                User user = response.body();
+                USER_INFO = user;
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+
+            }
+        });
+
     }
 
     // Start guest sessie
@@ -149,6 +173,7 @@ public class login extends AppCompatActivity {
                             Log.d("SessionCreated", SESSION_ID);
                             Toast.makeText(getApplicationContext(), "Successfully logged in as guest!", Toast.LENGTH_SHORT).show();
                             Log.d("LOGIN", "Signed in as guest");
+                            IS_GUEST = true;
                             Intent intent = new Intent(view.getContext(), MainActivity.class);
                             view.getContext().startActivity(intent);
                         } else {

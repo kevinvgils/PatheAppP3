@@ -29,7 +29,10 @@
         <activity
             android:name=".ui.MovieDetail"
             android:exported="false">
-
+        </activity>
+        <activity
+            android:name=".ui.UserListActivity"
+            android:exported="false">
         </activity>
     </application>
 

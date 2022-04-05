@@ -3,15 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/PahteApp/app/src/main/res/layout-v23/activity_main.xml" value="0.23052536231884058" />
+        <entry key="..\:/PahteApp/app/src/main/res/layout/activity_list.xml" value="0.11614583333333334" />
+        <entry key="..\:/PahteApp/app/src/main/res/layout/activity_list_main.xml" value="0.11614583333333334" />
+        <entry key="..\:/PahteApp/app/src/main/res/layout/activity_login.xml" value="0.11614583333333334" />
         <entry key="..\:/PahteApp/app/src/main/res/layout/activity_main.xml" value="0.176" />
+        <entry key="..\:/PahteApp/app/src/main/res/layout/filter_layout.xml" value="0.11614583333333334" />
+        <entry key="..\:/PahteApp/app/src/main/res/layout/list_movie.xml" value="0.264" />
         <entry key="..\:/PahteApp/app/src/main/res/layout/movie_layout.xml" value="0.11614583333333334" />
-        <entry key="..\:/Users/traai/OneDrive/Documenten/GitKraken/PatheAppP3/app/src/main/res/layout/activity_main.xml" value="0.14175724637681159" />
-        <entry key="..\:/Users/traai/OneDrive/Documenten/GitKraken/PatheAppP3/app/src/main/res/layout/activity_movie_detail.xml" value="0.3333333333333333" />
+        <entry key="..\:/PahteApp/app/src/main/res/layout/movie_list.xml" value="0.536" />
+        <entry key="..\:/PahteApp/app/src/main/res/menu/main_menu.xml" value="0.1" />
+        <entry key="..\:/PahteApp/app/src/main/res/menu/menu.xml" value="0.11614583333333334" />
         <entry key="..\:/git/PatheAppP3/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3445" />
         <entry key="..\:/git/PatheAppP3/app/src/main/res/layout/activity_login.xml" value="0.33" />
-        <entry key="..\:/git/PatheAppP3/app/src/main/res/layout/activity_main.xml" value="0.2796296296296296" />
-        <entry key="..\:/git/PatheAppP3/app/src/main/res/layout/activity_movie_detail.xml" value="0.75" />
-        <entry key="..\:/git/PatheAppP3/app/src/main/res/layout/filter_layout.xml" value="0.67" />
+        <entry key="..\:/git/PatheAppP3/app/src/main/res/layout/activity_main.xml" value="0.2975630611372381" />
         <entry key="..\:/git/PatheAppP3/app/src/main/res/layout/movie_layout.xml" value="0.25" />
         <entry key="..\:/git/PatheAppP3/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1935" />
       </map>
