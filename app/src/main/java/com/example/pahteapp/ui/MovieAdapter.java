@@ -29,17 +29,29 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         this.context = context;
     }
 
-    static class MovieViewHolder extends RecyclerView.ViewHolder {
+    static class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public final TextView movieTitle;
         public final ImageView imageView;
         final MovieAdapter mAdapter;
+        public int id;
+
+        public void setId(Integer id) {
+            this.id = id;
+        }
 
         public MovieViewHolder(View itemView, MovieAdapter adapter) {
             super(itemView);
             movieTitle = itemView.findViewById(R.id.movieTitle);
             imageView = itemView.findViewById(R.id.imageView);
-
             this.mAdapter = adapter;
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            Intent detailIntent = new Intent(view.getContext(), MovieDetail.class);
+            detailIntent.putExtra("id", id);
+            view.getContext().startActivity(detailIntent);
         }
     }
 
@@ -58,6 +70,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     @Override
     public void onBindViewHolder(@NonNull MovieAdapter.MovieViewHolder holder, int position) {
         Movie mCurrent = nMovieList.get(position);
+        holder.setId(mCurrent.getId());
         holder.movieTitle.setText(mCurrent.getTitle());
         Picasso.get().load("https://image.tmdb.org/t/p/w500/" + mCurrent.getPosterPath()).into(holder.imageView);
     }

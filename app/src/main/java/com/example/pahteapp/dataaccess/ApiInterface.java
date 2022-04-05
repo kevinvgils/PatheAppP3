@@ -1,14 +1,19 @@
 package com.example.pahteapp.dataaccess;
 
 import com.example.pahteapp.domain.Authenticate;
+import com.example.pahteapp.domain.DiscoverGenres;
 import com.example.pahteapp.domain.DiscoveredMovies;
-
+import com.example.pahteapp.domain.MovieList;
+import com.example.pahteapp.domain.PaginatedUserList;
+import com.example.pahteapp.domain.User;
+import com.example.pahteapp.domain.Movie;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiInterface {
@@ -16,7 +21,28 @@ public interface ApiInterface {
     @GET("discover/movie")
     Call<DiscoveredMovies> getMovies(
             @Query("api_key") String apiKey,
-            @Query("page") int page
+            @Query("page") int page,
+            @Query("vote_average.gte") Integer rating,
+            @Query("with_genres") String genre,
+            @Query("sort_by") String sort
+    );
+
+    @GET("search/movie")
+    Call<DiscoveredMovies> getMoviesByName(
+            @Query("api_key") String apiKey,
+            @Query("query") String query
+    );
+
+    @GET("genre/movie/list")
+    Call<DiscoverGenres> getGenres(
+            @Query("api_key") String apiKey
+
+    );
+
+    @GET("movie/{movie_id}")
+    Call<Movie> getMovie(
+            @Path("movie_id") Integer id,
+            @Query("api_key") String apiKey
     );
 
     @GET("authentication/token/new")
@@ -50,5 +76,24 @@ public interface ApiInterface {
             @Query("session_id") String sessionID,
             @Field("name") String listName
 
+    );
+
+    @GET("account/{account_id}/lists")
+    Call<PaginatedUserList> getAllListsUser(
+            @Path("account_id") Integer accountId,
+            @Query("api_key") String apiKey,
+            @Query("session_id") String sessionId
+    );
+
+    @GET("account")
+    Call<User> getUser(
+            @Query("api_key") String apiKey,
+            @Query("session_id") String sessionId
+    );
+
+    @GET("list/{list_id}")
+    Call<MovieList> getList(
+            @Path("list_id") Integer listId,
+            @Query("api_key") String apiKey
     );
 }
