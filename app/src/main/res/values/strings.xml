@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">PatheApp</string>
-
     <string name="login_as_guest">Continue as guest?</string>
     <string name="login_password">Password</string>
     <string name="login_username">Username</string>
@@ -33,5 +32,4 @@
     <string name="menu_home" translatable="false">Home</string>
     <string name="menu_lists">Lists</string>
     <string name="menu_logout">Logout</string>
-
 </resources>
