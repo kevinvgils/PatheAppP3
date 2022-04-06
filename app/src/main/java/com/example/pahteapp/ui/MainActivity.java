@@ -131,8 +131,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 EditText FilterMovieTitle = findViewById(R.id.FilterMovieTitle);
-                getMovie(FilterMovieTitle.getText().toString());
-                hideFilters(view);
+                if(!FilterMovieTitle.getText().toString().equals("")){
+                    getMovie(FilterMovieTitle.getText().toString());
+                    hideFilters(view);
+                }
             }
         });
 
