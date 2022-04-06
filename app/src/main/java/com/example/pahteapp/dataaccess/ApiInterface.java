@@ -15,6 +15,7 @@ import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -106,4 +107,13 @@ public interface ApiInterface {
             @Query("session_id") String sessionId
     );
 
+    @POST("list/{list_id}/remove_item")
+    @FormUrlEncoded
+    Call<Authenticate> deleteMovieFromList(
+            @Header("Content-Type") String charset,
+            @Path("list_id") Integer listId,
+            @Query("api_key") String apiKey,
+            @Query("session_id") String sessionId,
+            @Field("media_id") Integer movieId
+    );
 }

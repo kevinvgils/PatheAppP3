@@ -20,6 +20,12 @@ public class Authenticate {
     @SerializedName("guest_session_id")
     @Expose
     private String guestSessionId;
+    @SerializedName("status_message")
+    @Expose
+    private String statusMessage;
+    @SerializedName("status_code")
+    @Expose
+    private Integer statusId;
 
     public Boolean getSuccess() {
         return success;
@@ -70,5 +76,13 @@ public class Authenticate {
                 ", sessionId='" + sessionId + '\'' +
                 ", guestSessionId='" + guestSessionId + '\'' +
                 '}';
+    }
+
+    public String getStatusMessage() {
+        return statusMessage;
+    }
+
+    public void setStatusMessage(String statusMessage) {
+        this.statusMessage = statusMessage;
     }
 }

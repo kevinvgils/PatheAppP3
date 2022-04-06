@@ -69,7 +69,7 @@ public class ParentListAdapter extends RecyclerView.Adapter<ParentListAdapter.Pa
         // Create an instance of the child
         // item view adapter and set its
         // adapter, layout manager and RecyclerViewPool
-        ChildListAdapter childItemAdapter = new ChildListAdapter(parentItem.getMovies());
+        ChildListAdapter childItemAdapter = new ChildListAdapter(parentItem.getMovies(), parentItem.getId());
         parentViewHolder.ChildRecyclerView.setLayoutManager(layoutManager);
         parentViewHolder.ChildRecyclerView.setAdapter(childItemAdapter);
         parentViewHolder.ChildRecyclerView.setRecycledViewPool(viewPool);
