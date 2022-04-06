@@ -24,7 +24,6 @@
     <string name="detail_rating">Rating:</string>
     <string name="detail_submit">Submit</string>
 
-    <string name="list_edit">Edit</string>
     <string name="list_delete">Delete</string>
 
     <string name="menu_home" translatable="false">Home</string>

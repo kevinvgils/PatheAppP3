@@ -39,7 +39,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@android:drawable/ic_input_add"
             tools:visibility="visible" />
-            android:text="@string/list_edit"
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
