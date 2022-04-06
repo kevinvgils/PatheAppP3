@@ -126,4 +126,12 @@ public interface ApiInterface {
             @Query("session_id") String sessionId
     );
 
+    @POST("list/{list_id}/remove_item")
+    @FormUrlEncoded
+    Call<Authenticate> deleteMovieFromList(
+            @Path("list_id") Integer listId,
+            @Query("api_key") String apiKey,
+            @Query("session_id") String sessionId,
+            @Field("media_id") Integer movieId
+    );
 }
