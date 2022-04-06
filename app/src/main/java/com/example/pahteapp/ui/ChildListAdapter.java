@@ -32,7 +32,6 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.Movi
 
     private List<Movie> ChildItemList;
     private Integer listId;
-    private Integer movieId;
 
     // Constructor
     ChildListAdapter(List<Movie> childItemList, Integer listId)
@@ -60,7 +59,6 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.Movi
         // the ImageViews because we have
         // provided the source for the images
         // in the layout file itself
-        movieId = childItem.getId();
         childViewHolder.desc.setText(childItem.getOverview());
         childViewHolder.title.setText(childItem.getTitle());
         Picasso.get().load("https://image.tmdb.org/t/p/w500/" + childItem.getPosterPath()).into(childViewHolder.movieImage);
@@ -108,7 +106,7 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.Movi
         public void onClick(View view) {
             ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
-            Call<Authenticate> call = apiInterface.deleteMovieFromList(listId, "1e2c1f57cbed4d3e0c5dcad5996f2649", SESSION_ID, movieId);
+            Call<Authenticate> call = apiInterface.deleteMovieFromList(listId, "1e2c1f57cbed4d3e0c5dcad5996f2649", SESSION_ID, ChildItemList.get(getAdapterPosition()).getId());
 
             call.enqueue(new Callback<Authenticate>() {
                 @Override
@@ -116,7 +114,7 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.Movi
                     if (!response.isSuccessful()) return;
                     Intent intent = new Intent(view.getContext(), UserListActivity.class);
                     view.getContext().startActivity(intent);
-                    Toast.makeText(view.getContext(), "Deleted movie", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(view.getContext(), "Deleted: " + ChildItemList.get(getAdapterPosition()).getTitle() + " from list", Toast.LENGTH_SHORT).show();
 
                 }
 
