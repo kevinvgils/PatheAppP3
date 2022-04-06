@@ -26,6 +26,7 @@ import com.example.pahteapp.dataaccess.ApiClient;
 import com.example.pahteapp.dataaccess.ApiInterface;
 import com.example.pahteapp.dataaccess.Logout;
 import com.example.pahteapp.domain.DiscoveredMovies;
+import com.example.pahteapp.domain.Genre;
 import com.example.pahteapp.domain.Movie;
 import com.example.pahteapp.domain.reviews.PaginatedReviews;
 import com.example.pahteapp.domain.reviews.Review;
@@ -151,10 +152,10 @@ public class MovieDetail extends AppCompatActivity {
         movieDuration.setText(selectedMovie.getRuntime() / 60 + "h " + selectedMovie.getRuntime() % 60 + "m");
         movieDescription.setText(selectedMovie.getOverview());
 
-        if(selectedMovie.getGenreIds() != null && selectedMovie.getGenreIds().size() != 0){
-            String genres = "Genres: ";
-            for(Integer genre : selectedMovie.getGenreIds()){
-                genres = genres.concat(genre+", ");
+        if(selectedMovie.getGenreList() != null && selectedMovie.getGenreList().size() != 0){
+            String genres = "";
+            for(Genre genre : selectedMovie.getGenreList()){
+                genres = genres.concat(genre.getName()+", ");
             }
             genres = genres.substring(0, genres.length()-2);
             movieGenres.setText(genres);
