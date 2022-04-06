@@ -5,6 +5,7 @@ import static com.example.pahteapp.ui.login.IS_GUEST;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -22,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.pahteapp.R;
 import com.example.pahteapp.dataaccess.ApiClient;
 import com.example.pahteapp.dataaccess.ApiInterface;
+import com.example.pahteapp.dataaccess.Logout;
 import com.example.pahteapp.domain.DiscoveredMovies;
 import com.example.pahteapp.domain.Movie;
 import com.example.pahteapp.domain.reviews.PaginatedReviews;
@@ -61,6 +64,32 @@ public class MovieDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail);
+        getSupportActionBar().hide();
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("PatheApp");
+        toolbar.inflateMenu(R.menu.main_menu);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if(item.getItemId() == R.id.lists) {
+                    if(IS_GUEST) {
+                        Toast.makeText(getApplicationContext(), "Can't view lists as guest", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Intent intent = new Intent(getApplicationContext(), UserListActivity.class);
+                        startActivity(intent);
+                    }
+                } else if(item.getItemId() == R.id.logout) {
+                    Intent intent = new Intent(getApplicationContext(), login.class);
+                    startActivity(intent);
+                    Logout.doLogout(getApplicationContext());
+                } else if(item.getItemId() == R.id.home) {
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                }
+
+                return false;
+            }
+        });
 
         movieTitle = findViewById(R.id.movieTitle);
         movieBanner = findViewById(R.id.movieBanner);
