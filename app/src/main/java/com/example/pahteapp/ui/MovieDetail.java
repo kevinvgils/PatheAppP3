@@ -1,5 +1,8 @@
 package com.example.pahteapp.ui;
 
+import static com.example.pahteapp.ui.login.IS_GUEST;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -61,6 +64,19 @@ public class MovieDetail extends AppCompatActivity {
         movieDuration = findViewById(R.id.movieDuration);
         movieGenres = findViewById(R.id.movieGenres);
         movieDescription = findViewById(R.id.movieDescription);
+
+        Button addMovieButton = findViewById(R.id.addMovieButton);
+        if(!IS_GUEST){
+            addMovieButton.setVisibility(View.VISIBLE);
+            addMovieButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getApplicationContext(), UserListActivity.class);
+                    intent.putExtra("movie", selectedMovie.getId());
+                    startActivity(intent);
+                }
+            });
+        }
 
         setAdapter();
         getMovie();

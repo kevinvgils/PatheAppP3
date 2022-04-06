@@ -27,6 +27,9 @@ public class Movie implements Serializable {
     @SerializedName("id")
     @Expose
     private Integer id;
+    @SerializedName("media_id")
+    @Expose
+    private Integer media_id;
     @SerializedName("original_title")
     @Expose
     private String originalTitle;
@@ -186,5 +189,13 @@ public class Movie implements Serializable {
                 ", video=" + video +
                 ", voteAverage=" + voteAverage +
                 '}';
+    }
+
+    public Integer getMedia_id() {
+        return media_id;
+    }
+
+    public void setMedia_id(Integer media_id) {
+        this.media_id = media_id;
     }
 }

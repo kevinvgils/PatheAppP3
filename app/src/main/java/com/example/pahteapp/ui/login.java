@@ -119,6 +119,7 @@ public class login extends AppCompatActivity {
                     getUserInfo();
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
+                    IS_GUEST = false;
                     Toast.makeText(getApplicationContext(), "Successfully logged in", Toast.LENGTH_SHORT).show();
                 } else {
                     Log.d("SessionFailed", "failure " + response.headers());
