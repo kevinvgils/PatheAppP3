@@ -108,14 +108,12 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.Movi
         public void onClick(View view) {
             ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
-            Call<Authenticate> call = apiInterface.deleteMovieFromList("application/json;charset=utf-8", listId, "1e2c1f57cbed4d3e0c5dcad5996f2649", SESSION_ID, movieId);
+            Call<Authenticate> call = apiInterface.deleteMovieFromList(listId, "1e2c1f57cbed4d3e0c5dcad5996f2649", SESSION_ID, movieId);
 
             call.enqueue(new Callback<Authenticate>() {
                 @Override
                 public void onResponse(Call<Authenticate> call, Response<Authenticate> response) {
-                    Log.e("TEST", String.valueOf(response.headers()));
                     if (!response.isSuccessful()) return;
-                    Log.d("TEST", "deleted");
                     Intent intent = new Intent(view.getContext(), UserListActivity.class);
                     view.getContext().startActivity(intent);
                     Toast.makeText(view.getContext(), "Deleted movie", Toast.LENGTH_SHORT).show();

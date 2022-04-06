@@ -26,9 +26,6 @@ public class Authenticate {
     @SerializedName("status_message")
     @Expose
     private String statusMessage;
-    @SerializedName("status_code")
-    @Expose
-    private Integer statusId;
 
     public Boolean getSuccess() {
         return success;
