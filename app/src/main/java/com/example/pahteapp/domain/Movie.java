@@ -2,6 +2,8 @@ package com.example.pahteapp.domain;
 
 import java.io.Serializable;
 import java.util.List;
+
+import com.example.pahteapp.domain.reviews.Trailer;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 public class Movie implements Serializable {
@@ -24,9 +26,15 @@ public class Movie implements Serializable {
     @SerializedName("genre_ids")
     @Expose
     private List<Integer> genreIds = null;
+    @SerializedName("genres")
+    @Expose
+    private List<Genre> genreList = null;
     @SerializedName("id")
     @Expose
     private Integer id;
+    @SerializedName("media_id")
+    @Expose
+    private Integer media_id;
     @SerializedName("original_title")
     @Expose
     private String originalTitle;
@@ -51,6 +59,10 @@ public class Movie implements Serializable {
     @SerializedName("vote_average")
     @Expose
     private Double voteAverage;
+
+    @SerializedName("results")
+    @Expose
+    private List<Trailer> results = null;
 
     public String getPosterPath() {
         return posterPath;
@@ -94,6 +106,14 @@ public class Movie implements Serializable {
 
     public void setGenreIds(List<Integer> genreIds) {
         this.genreIds = genreIds;
+    }
+
+    public List<Genre> getGenreList() {
+        return genreList;
+    }
+
+    public void setGenreList(List<Genre> genreList) {
+        this.genreList = genreList;
     }
 
     public Integer getId() {
@@ -186,5 +206,21 @@ public class Movie implements Serializable {
                 ", video=" + video +
                 ", voteAverage=" + voteAverage +
                 '}';
+    }
+
+    public Integer getMedia_id() {
+        return media_id;
+    }
+
+    public void setMedia_id(Integer media_id) {
+        this.media_id = media_id;
+    }
+
+    public List<Trailer> getResults() {
+        return results;
+    }
+
+    public void setResults(List<Trailer> results) {
+        this.results = results;
     }
 }

@@ -7,11 +7,17 @@ import com.example.pahteapp.domain.MovieList;
 import com.example.pahteapp.domain.PaginatedUserList;
 import com.example.pahteapp.domain.User;
 import com.example.pahteapp.domain.Movie;
+import com.example.pahteapp.domain.UserList;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
+import com.example.pahteapp.domain.reviews.PaginatedReviews;
+
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -71,6 +77,37 @@ public interface ApiInterface {
             @Query("api_key") String apiKey
     );
 
+    @POST("list")
+    Call<Authenticate> createUserList(
+            @Header("Content-Type") String charset,
+            @Query("api_key") String apiKey,
+            @Query("session_id") String sessionID,
+            @Body UserList list
+    );
+
+    @POST("list/{list_id}/add_item")
+    Call<Authenticate> addMovieToList(
+            @Path("list_id") Integer list_id,
+            @Header("Content-Type") String charset,
+            @Query("api_key") String apiKey,
+            @Query("session_id") String sessionID,
+            @Body Movie movie
+    );
+
+    @GET("movie/{movie_id}/reviews")
+    Call<PaginatedReviews> getMovieReviews(
+            @Path("movie_id") Integer movieId,
+            @Query("api_key") String apiKey,
+            @Query("page") Integer page
+    );
+
+    @GET("movie/{movie_id}/videos")
+    Call<Movie> getMovieTrailers(
+            @Path("movie_id") Integer movieId,
+            @Query("api_key") String apiKey,
+            @Query("language") String language
+    );
+
     @GET("account/{account_id}/lists")
     Call<PaginatedUserList> getAllListsUser(
             @Path("account_id") Integer accountId,
@@ -88,5 +125,20 @@ public interface ApiInterface {
     Call<MovieList> getList(
             @Path("list_id") Integer listId,
             @Query("api_key") String apiKey
+    );
+
+    @DELETE("authentication/session")
+    Call<Authenticate> logout(
+            @Query("api_Key") String apiKey,
+            @Query("session_id") String sessionId
+    );
+
+    @POST("list/{list_id}/remove_item")
+    @FormUrlEncoded
+    Call<Authenticate> deleteMovieFromList(
+            @Path("list_id") Integer listId,
+            @Query("api_key") String apiKey,
+            @Query("session_id") String sessionId,
+            @Field("media_id") Integer movieId
     );
 }
