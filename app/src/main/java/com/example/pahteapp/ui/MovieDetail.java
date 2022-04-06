@@ -1,6 +1,7 @@
 package com.example.pahteapp.ui;
 
 import static com.example.pahteapp.ui.login.IS_GUEST;
+import static com.example.pahteapp.ui.login.SESSION_ID;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.pahteapp.R;
 import com.example.pahteapp.dataaccess.ApiClient;
 import com.example.pahteapp.dataaccess.ApiInterface;
+import com.example.pahteapp.domain.Authenticate;
 import com.example.pahteapp.domain.DiscoveredMovies;
 import com.example.pahteapp.domain.Movie;
 import com.example.pahteapp.domain.reviews.PaginatedReviews;
@@ -48,6 +50,9 @@ public class MovieDetail extends AppCompatActivity {
     private TextView movieDescription;
     private ReviewAdapter mAdapter;
     private PaginatedReviews paginatedReviews;
+    private Button reviewSubmit;
+    private RatingBar reviewRating;
+
 
     private final List<Review> nReviewList = new ArrayList<>();
     Integer page = 1;
@@ -69,6 +74,8 @@ public class MovieDetail extends AppCompatActivity {
         movieDuration = findViewById(R.id.movieDuration);
         movieGenres = findViewById(R.id.movieGenres);
         movieDescription = findViewById(R.id.movieDescription);
+        reviewSubmit = findViewById(R.id.reviewSubmitButton);
+        reviewRating = findViewById(R.id.reviewRating);
 
         mTrailerView = findViewById(R.id.trailerView);
         mTrailerView.setWebViewClient(new WebViewClient());
@@ -151,6 +158,34 @@ public class MovieDetail extends AppCompatActivity {
             @Override
             public void onFailure(Call<Movie> call, Throwable t) {
                 Log.e("MainActivity", t.toString());
+            }
+        });
+
+        reviewSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Call<Authenticate> call;
+                ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+
+                if (IS_GUEST) {
+                    call = apiInterface.giveMovieRating(selectedMovie.getId(), "1e2c1f57cbed4d3e0c5dcad5996f2649" ,SESSION_ID, null, (reviewRating.getRating() * 2));
+                } else {
+                    call = apiInterface.giveMovieRating(selectedMovie.getId(), "1e2c1f57cbed4d3e0c5dcad5996f2649",null, SESSION_ID, reviewRating.getRating() * 2);
+                }
+
+                call.enqueue(new Callback<Authenticate>() {
+                    @Override
+                    public void onResponse(Call<Authenticate> call, Response<Authenticate> response) {
+                        if (!response.isSuccessful()) return;
+                        Toast.makeText(getApplicationContext(), "Review added", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(Call<Authenticate> call, Throwable t) {
+
+                    }
+                });
+
             }
         });
     }
