@@ -8,14 +8,14 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/movieBanner"
@@ -50,7 +50,7 @@
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/movieBanner"
                 tools:visibility="visible" />
 
             <RatingBar
@@ -78,17 +78,17 @@
                 app:layout_constraintStart_toEndOf="@+id/movieRating"
                 app:layout_constraintTop_toTopOf="@+id/movieRating" />
 
-        <TextView
-            android:id="@+id/reviewText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="36dp"
-            android:text="@string/reviews"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addMovieButton" />
+            <TextView
+                android:id="@+id/reviewText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="36dp"
+                android:text="@string/reviews"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addMovieButton" />
 
             <TextView
                 android:id="@+id/movieDescription"
@@ -139,6 +139,16 @@
                 app:layout_constraintStart_toEndOf="@+id/ratingText"
                 app:layout_constraintTop_toBottomOf="@+id/line" />
 
+            <TextView
+                android:id="@+id/movieDuration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/_120_minutes"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/movieRating"
+                tools:ignore="TextContrastCheck" />
+
             <Button
                 android:id="@+id/reviewSubmitButton"
                 android:layout_width="wrap_content"
@@ -154,6 +164,17 @@
                 app:layout_constraintHorizontal_bias="0.444"
                 app:layout_constraintStart_toEndOf="@+id/reviewRating"
                 app:layout_constraintTop_toTopOf="@+id/reviewRating" />
+
+            <TextView
+                android:id="@+id/movieGenres"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/horror_action"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/movieDuration"
+                tools:ignore="TextContrastCheck" />
 
             <TextView
                 android:id="@+id/movieDuration"
@@ -185,18 +206,30 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/reviewRating" />
 
-                <Button
-                    android:id="@+id/addMovieButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="Toevoegen aan lijst"
-                    android:textSize="12sp"
-                    android:visibility="gone"
-                    app:layout_constraintStart_toStartOf="@+id/movieDescription"
-                    app:layout_constraintTop_toBottomOf="@+id/movieDescription"
-                    tools:visibility="visible" />
+            <Button
+                android:id="@+id/addMovieButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Toevoegen aan lijst"
+                android:textSize="12sp"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="@+id/movieDescription"
+                app:layout_constraintTop_toBottomOf="@+id/movieDescription"
+                tools:visibility="visible" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
+    <Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        android:titleTextColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
