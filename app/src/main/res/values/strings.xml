@@ -1,21 +1,35 @@
 <resources>
     <string name="app_name">PatheApp</string>
-    <string name="movie_poster">movie poster</string>
-    <string name="rating">Rating:</string>
-    <string name="review">Review</string>
-    <string name="reviews">Reviews</string>
-    <string name="description">description</string>
-    <string name="_4_5">4/5</string>
-    <string name="movierating">movieRating</string>
-    <string name="title">title</string>
-    <string name="reviewdescription">reviewDescription</string>
-    <string name="submit">Submit</string>
-    <string name="moviebanner">movieBanner</string>
-    <string name="userName">user</string>
-    <string name="doorgaan_als_gast">Doorgaan als gast?</string>
-    <string name="geen_account">Geen account?</string>
-    <string name="login">Login</string>
-    <string name="listnamehere">ListNameHere</string>
-    <string name="delete">Delete</string>
-    <string name="edit">Edit</string>
+    <string name="login_as_guest">Continue as guest?</string>
+    <string name="login_password">Password</string>
+    <string name="login_username">Username</string>
+    <string name="login_button">Login</string>
+    <string name="login_no_account">No account?</string>
+
+    <string name="main_search_movie">Search movie:</string>
+    <string name="main_movie_title">Movie title</string>
+    <string name="main_search">Search</string>
+    <string name="main_minimal_rating">Minimal rating</string>
+    <string name="main_genres" translatable="false">Genres</string>
+    <string name="main_filters" translatable="false">Filters</string>
+    <string name="main_sort">Sort</string>
+    <string name="main_name">Name</string>
+    <string name="main_date">Date</string>
+    <string name="main_rating">Rating</string>
+    <string name="main_descending">Descending</string>
+    <string name="main_filter" translatable="false">Filter</string>
+
+    <string name="detail_reviews">Reviews</string>
+    <string name="detail_rating">Rating:</string>
+    <string name="detail_submit">Submit</string>
+    <string name="detail_addlist">Add to list</string>
+
+    <string name="list_delete">Delete</string>
+    <string name="list_create">Create list</string>
+    <string name="list_name">Name</string>
+    <string name="list_add">Add</string>
+
+    <string name="menu_home" translatable="false">Home</string>
+    <string name="menu_lists">Lists</string>
+    <string name="menu_logout">Logout</string>
 </resources>
