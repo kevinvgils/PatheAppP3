@@ -23,4 +23,6 @@
     <string name="menu_logout">Uitloggen</string>
     <string name="detail_addlist">Toevoegen aan lijst</string>
     <string name="list_create">Lijst aanmaken</string>
+    <string name="list_name">Naam</string>
+    <string name="list_add">Toevoegen</string>
 </resources>

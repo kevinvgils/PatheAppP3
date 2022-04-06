@@ -27,6 +27,8 @@
 
     <string name="list_delete">Delete</string>
     <string name="list_create">Create list</string>
+    <string name="list_name">Name</string>
+    <string name="list_add">Add</string>
 
     <string name="menu_home" translatable="false">Home</string>
     <string name="menu_lists">Lists</string>
