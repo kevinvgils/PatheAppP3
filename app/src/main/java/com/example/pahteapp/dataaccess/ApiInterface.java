@@ -141,4 +141,14 @@ public interface ApiInterface {
             @Query("session_id") String sessionId,
             @Field("media_id") Integer movieId
     );
+
+    @POST("movie/{movie_id}/rating")
+    @FormUrlEncoded
+    Call<Authenticate> giveMovieRating(
+            @Path("movie_id") Integer movieId,
+            @Query("api_key") String apiKey,
+            @Query("guest_session_id") String guestSessionId,
+            @Query("session_id") String sessionId,
+            @Field("value") float rating
+    );
 }
