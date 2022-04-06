@@ -92,6 +92,8 @@ public class UserListActivity extends AppCompatActivity {
             public void onClick(View view) {
                 EditText editListName = findViewById(R.id.EditListName);
                 addList(editListName.getText().toString());
+                mAddFormWrap.setVisibility(View.GONE);
+                mAddButton.setVisibility(View.VISIBLE);
             }
         });
 
