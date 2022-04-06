@@ -41,6 +41,12 @@ public class login extends AppCompatActivity {
         
     }
 
+    private void showError(String message){
+        TextView error = findViewById(R.id.ErrorView);
+        error.setText(message);
+        error.setVisibility(View.VISIBLE);
+    }
+
     // Haal de eerst de request token op die je gaat gebruiken om in te loggen
     private void getRequestToken() {
         Log.d("RequestToken", "Test");
@@ -90,13 +96,15 @@ public class login extends AppCompatActivity {
                             getSessionId();
                         } else {
                             Log.d("LoginFailed", "failure " + response.headers());
+                            showError("Verkeerde inloggegevens");
                         }
 
                     }
 
                     @Override
                     public void onFailure(Call<Authenticate> call, Throwable t) {
-                            Log.d("LoginFail", t.toString());
+                        Log.d("LoginFail", t.toString());
+                        showError("Verkeerde inloggegevens");
                     }
                 });
             }
@@ -120,13 +128,10 @@ public class login extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                     IS_GUEST = false;
-                    Toast.makeText(getApplicationContext(), "Successfully logged in", Toast.LENGTH_SHORT).show();
                 } else {
                     Log.d("SessionFailed", "failure " + response.headers());
                 }
-
             }
-
             @Override
             public void onFailure(Call<Authenticate> call, Throwable t) {
                 Log.d("LoginFail", t.toString());
