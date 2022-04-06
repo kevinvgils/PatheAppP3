@@ -6,10 +6,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -50,12 +54,13 @@ public class MovieDetail extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
 
+    private boolean trailerSearchDone;
+    private WebView mTrailerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail);
-
 
         movieTitle = findViewById(R.id.movieTitle);
         movieBanner = findViewById(R.id.movieBanner);
@@ -64,6 +69,21 @@ public class MovieDetail extends AppCompatActivity {
         movieDuration = findViewById(R.id.movieDuration);
         movieGenres = findViewById(R.id.movieGenres);
         movieDescription = findViewById(R.id.movieDescription);
+
+        mTrailerView = findViewById(R.id.trailerView);
+        mTrailerView.setWebViewClient(new WebViewClient());
+        WebSettings trailerSettings = mTrailerView.getSettings();
+        trailerSettings.setJavaScriptEnabled(true);
+
+        movieBanner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!trailerSearchDone){
+                    getTrailer();
+                }
+                trailerSearchDone = true;
+            }
+        });
 
         Button addMovieButton = findViewById(R.id.addMovieButton);
         if(!IS_GUEST){
@@ -167,5 +187,45 @@ public class MovieDetail extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void showTrailer(){
+        mTrailerView.setVisibility(View.VISIBLE);
+        movieBanner.setVisibility(View.INVISIBLE);
+        movieTitle.setVisibility(View.INVISIBLE);
+    }
+
+    private void getTrailer(){
+        final boolean[] output = {false};
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+
+        Call<Movie> call = apiInterface.getMovieTrailers(getId(), "1e2c1f57cbed4d3e0c5dcad5996f2649", "nl");
+
+        call.enqueue(new Callback<Movie>() {
+            @Override
+            public void onResponse(Call<Movie> call, Response<Movie> response) {
+                try {
+                    Log.d("Trailer Response", response.toString());
+                    Movie allTrailers = response.body();
+                    Log.d("Trailer Response Object", allTrailers.getResults().get(0).getKey());
+                    if(allTrailers.getResults() != null){
+                        mTrailerView.loadUrl("https://www.youtube.com/embed/"+allTrailers.getResults().get(0).getKey());
+                        showTrailer();
+                    } else{
+                        throw new NullPointerException("No movies found");
+                    }
+
+                } catch (Exception e){
+                    Log.w("Trailer Warning",e);
+                    Toast.makeText(getApplicationContext(), "Geen film trailers gevonden", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Movie> call, Throwable t) {
+                Log.d("Trailer Response", selectedMovie.getId()+"");
+                Log.e("Trailer Error", t.toString());
+            }
+        });
     }
 }

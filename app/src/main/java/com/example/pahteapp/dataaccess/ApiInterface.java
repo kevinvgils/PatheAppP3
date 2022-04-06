@@ -101,6 +101,13 @@ public interface ApiInterface {
             @Query("page") Integer page
     );
 
+    @GET("movie/{movie_id}/videos")
+    Call<Movie> getMovieTrailers(
+            @Path("movie_id") Integer movieId,
+            @Query("api_key") String apiKey,
+            @Query("language") String language
+    );
+
     @GET("account/{account_id}/lists")
     Call<PaginatedUserList> getAllListsUser(
             @Path("account_id") Integer accountId,

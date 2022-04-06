@@ -16,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
+
             <ImageView
                 android:id="@+id/movieBanner"
                 android:layout_width="match_parent"
@@ -23,6 +24,7 @@
                 android:contentDescription="@string/moviebanner"
                 android:scaleType="centerCrop"
                 android:tint="#8B000000"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ImageContrastCheck"
@@ -41,11 +43,22 @@
                 app:layout_constraintStart_toStartOf="@+id/movieBanner"
                 app:layout_constraintTop_toTopOf="@+id/movieBanner" />
 
+            <WebView
+                android:id="@+id/trailerView"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible" />
+
             <RatingBar
                 android:id="@+id/movieRating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="-26dp"
+                android:clickable="false"
                 android:contentDescription="@string/movierating"
                 android:progressTint="#FFC426"
                 android:rating="3.3"
