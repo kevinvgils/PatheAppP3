@@ -21,4 +21,6 @@
     <string name="list_delete">Verwijderen</string>
     <string name="menu_lists">Lijsten</string>
     <string name="menu_logout">Uitloggen</string>
+    <string name="detail_addlist">Toevoegen aan lijst</string>
+    <string name="list_create">Lijst aanmaken</string>
 </resources>
