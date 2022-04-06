@@ -8,6 +8,9 @@ public class Authenticate {
     @SerializedName("success")
     @Expose
     private Boolean success;
+    @SerializedName("status_code")
+    @Expose
+    private Integer status_code;
     @SerializedName("expires_at")
     @Expose
     private String expiresAt;
@@ -84,5 +87,13 @@ public class Authenticate {
 
     public void setStatusMessage(String statusMessage) {
         this.statusMessage = statusMessage;
+    }
+
+    public Integer getStatus_code() {
+        return status_code;
+    }
+
+    public void setStatus_code(Integer status_code) {
+        this.status_code = status_code;
     }
 }
