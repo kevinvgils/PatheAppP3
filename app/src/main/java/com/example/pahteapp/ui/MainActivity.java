@@ -190,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.recyclerview);
         mAdapter = new MovieAdapter(this, nMovieList);
         mRecyclerView.setAdapter(mAdapter);
-        int gridColumnCount = 2;
+        int gridColumnCount = getResources().getInteger(R.integer.grid_column_count);
 
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, gridColumnCount));
 
