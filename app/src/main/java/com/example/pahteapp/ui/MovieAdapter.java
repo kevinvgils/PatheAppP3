@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pahteapp.R;
-import com.example.pahteapp.domain.Movie;
+import com.example.pahteapp.domain.movie.Movie;
 import com.squareup.picasso.Picasso;
 
 import java.util.LinkedList;

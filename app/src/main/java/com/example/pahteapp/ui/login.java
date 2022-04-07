@@ -14,8 +14,8 @@ import android.widget.Toast;
 import com.example.pahteapp.R;
 import com.example.pahteapp.dataaccess.ApiClient;
 import com.example.pahteapp.dataaccess.ApiInterface;
-import com.example.pahteapp.domain.Authenticate;
-import com.example.pahteapp.domain.User;
+import com.example.pahteapp.domain.login.Authenticate;
+import com.example.pahteapp.domain.login.User;
 
 import retrofit2.Call;
 import retrofit2.Callback;

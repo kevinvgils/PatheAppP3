@@ -1,13 +1,13 @@
 package com.example.pahteapp.dataaccess;
 
-import com.example.pahteapp.domain.Authenticate;
-import com.example.pahteapp.domain.DiscoverGenres;
-import com.example.pahteapp.domain.DiscoveredMovies;
-import com.example.pahteapp.domain.MovieList;
-import com.example.pahteapp.domain.PaginatedUserList;
-import com.example.pahteapp.domain.User;
-import com.example.pahteapp.domain.Movie;
-import com.example.pahteapp.domain.UserList;
+import com.example.pahteapp.domain.login.Authenticate;
+import com.example.pahteapp.domain.genre.DiscoverGenres;
+import com.example.pahteapp.domain.movie.DiscoveredMovies;
+import com.example.pahteapp.domain.list.MovieList;
+import com.example.pahteapp.domain.list.PaginatedUserList;
+import com.example.pahteapp.domain.login.User;
+import com.example.pahteapp.domain.movie.Movie;
+import com.example.pahteapp.domain.list.UserList;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

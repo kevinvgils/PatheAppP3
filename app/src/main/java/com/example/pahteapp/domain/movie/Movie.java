@@ -1,8 +1,9 @@
-package com.example.pahteapp.domain;
+package com.example.pahteapp.domain.movie;
 
 import java.io.Serializable;
 import java.util.List;
 
+import com.example.pahteapp.domain.genre.Genre;
 import com.example.pahteapp.domain.reviews.Trailer;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

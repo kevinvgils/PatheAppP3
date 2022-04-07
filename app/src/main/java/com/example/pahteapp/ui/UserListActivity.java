@@ -20,12 +20,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.pahteapp.R;
 import com.example.pahteapp.dataaccess.ApiClient;
 import com.example.pahteapp.dataaccess.ApiInterface;
-import com.example.pahteapp.domain.Authenticate;
+import com.example.pahteapp.domain.login.Authenticate;
 import com.example.pahteapp.dataaccess.Logout;
-import com.example.pahteapp.domain.Movie;
-import com.example.pahteapp.domain.MovieList;
-import com.example.pahteapp.domain.PaginatedUserList;
-import com.example.pahteapp.domain.UserList;
+import com.example.pahteapp.domain.movie.Movie;
+import com.example.pahteapp.domain.list.MovieList;
+import com.example.pahteapp.domain.list.PaginatedUserList;
+import com.example.pahteapp.domain.list.UserList;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;

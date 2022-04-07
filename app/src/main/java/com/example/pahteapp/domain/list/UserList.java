@@ -1,5 +1,6 @@
-package com.example.pahteapp.domain;
+package com.example.pahteapp.domain.list;
 
+import com.example.pahteapp.domain.movie.Movie;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

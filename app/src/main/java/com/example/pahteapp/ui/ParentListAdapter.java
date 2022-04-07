@@ -18,9 +18,9 @@ import android.widget.TextView;
 import com.example.pahteapp.R;
 import com.example.pahteapp.dataaccess.ApiClient;
 import com.example.pahteapp.dataaccess.ApiInterface;
-import com.example.pahteapp.domain.Authenticate;
-import com.example.pahteapp.domain.Movie;
-import com.example.pahteapp.domain.UserList;
+import com.example.pahteapp.domain.login.Authenticate;
+import com.example.pahteapp.domain.movie.Movie;
+import com.example.pahteapp.domain.list.UserList;
 
 import java.util.List;
 

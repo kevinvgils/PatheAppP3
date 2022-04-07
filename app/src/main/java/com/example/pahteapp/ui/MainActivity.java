@@ -27,10 +27,10 @@ import com.example.pahteapp.R;
 import com.example.pahteapp.dataaccess.ApiClient;
 import com.example.pahteapp.dataaccess.ApiInterface;
 import com.example.pahteapp.dataaccess.Logout;
-import com.example.pahteapp.domain.DiscoverGenres;
-import com.example.pahteapp.domain.DiscoveredMovies;
-import com.example.pahteapp.domain.Genre;
-import com.example.pahteapp.domain.Movie;
+import com.example.pahteapp.domain.genre.DiscoverGenres;
+import com.example.pahteapp.domain.movie.DiscoveredMovies;
+import com.example.pahteapp.domain.genre.Genre;
+import com.example.pahteapp.domain.movie.Movie;
 
 import java.util.LinkedList;
 
