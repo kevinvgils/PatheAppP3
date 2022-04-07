@@ -1,21 +1,17 @@
-package com.example.pahteapp.ui;
+package com.example.pahteapp.ui.movie;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pahteapp.R;
-import com.example.pahteapp.domain.Genre;
-import com.example.pahteapp.domain.Movie;
+import com.example.pahteapp.domain.genre.Genre;
 
 import java.util.LinkedList;
 

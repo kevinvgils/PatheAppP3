@@ -1,7 +1,7 @@
-package com.example.pahteapp.ui;
+package com.example.pahteapp.ui.moviedetail;
 
-import static com.example.pahteapp.ui.login.IS_GUEST;
-import static com.example.pahteapp.ui.login.SESSION_ID;
+import static com.example.pahteapp.ui.login.login.IS_GUEST;
+import static com.example.pahteapp.ui.login.login.SESSION_ID;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,17 +25,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.pahteapp.R;
 import com.example.pahteapp.dataaccess.ApiClient;
 import com.example.pahteapp.dataaccess.ApiInterface;
-import com.example.pahteapp.domain.Authenticate;
+import com.example.pahteapp.domain.login.Authenticate;
 import com.example.pahteapp.dataaccess.Logout;
-import com.example.pahteapp.domain.DiscoveredMovies;
-import com.example.pahteapp.domain.Genre;
-import com.example.pahteapp.domain.Movie;
+import com.example.pahteapp.domain.genre.Genre;
+import com.example.pahteapp.domain.movie.Movie;
 import com.example.pahteapp.domain.reviews.PaginatedReviews;
 import com.example.pahteapp.domain.reviews.Review;
+import com.example.pahteapp.ui.list.UserListActivity;
+import com.example.pahteapp.ui.login.login;
+import com.example.pahteapp.ui.movie.MainActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import retrofit2.Call;

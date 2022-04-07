@@ -1,23 +1,23 @@
-package com.example.pahteapp.domain;
+package com.example.pahteapp.domain.list;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class DiscoveredMovies {
+public class PaginatedUserList {
 
     @SerializedName("page")
     @Expose
     private Integer page;
     @SerializedName("results")
     @Expose
-    private List<Movie> results = null;
-    @SerializedName("total_results")
-    @Expose
-    private Integer totalResults;
+    private List<UserList> results = null;
     @SerializedName("total_pages")
     @Expose
     private Integer totalPages;
+    @SerializedName("total_results")
+    @Expose
+    private Integer totalResults;
 
     public Integer getPage() {
         return page;
@@ -27,20 +27,12 @@ public class DiscoveredMovies {
         this.page = page;
     }
 
-    public List<Movie> getResults() {
+    public List<UserList> getResults() {
         return results;
     }
 
-    public void setResults(List<Movie> results) {
+    public void setResults(List<UserList> results) {
         this.results = results;
-    }
-
-    public Integer getTotalResults() {
-        return totalResults;
-    }
-
-    public void setTotalResults(Integer totalResults) {
-        this.totalResults = totalResults;
     }
 
     public Integer getTotalPages() {
@@ -49,6 +41,14 @@ public class DiscoveredMovies {
 
     public void setTotalPages(Integer totalPages) {
         this.totalPages = totalPages;
+    }
+
+    public Integer getTotalResults() {
+        return totalResults;
+    }
+
+    public void setTotalResults(Integer totalResults) {
+        this.totalResults = totalResults;
     }
 
 }

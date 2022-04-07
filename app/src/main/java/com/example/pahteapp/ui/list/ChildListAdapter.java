@@ -1,6 +1,6 @@
-package com.example.pahteapp.ui;
+package com.example.pahteapp.ui.list;
 
-import static com.example.pahteapp.ui.login.SESSION_ID;
+import static com.example.pahteapp.ui.login.login.SESSION_ID;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,8 +18,8 @@ import android.widget.Toast;
 import com.example.pahteapp.R;
 import com.example.pahteapp.dataaccess.ApiClient;
 import com.example.pahteapp.dataaccess.ApiInterface;
-import com.example.pahteapp.domain.Authenticate;
-import com.example.pahteapp.domain.Movie;
+import com.example.pahteapp.domain.login.Authenticate;
+import com.example.pahteapp.domain.movie.Movie;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

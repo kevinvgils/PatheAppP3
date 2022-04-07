@@ -1,4 +1,4 @@
-package com.example.pahteapp.domain;
+package com.example.pahteapp.domain.genre;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

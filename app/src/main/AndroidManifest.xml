@@ -13,7 +13,7 @@
         android:theme="@style/Theme.PahteApp"
         >
         <activity
-            android:name=".ui.login"
+            android:name=".ui.login.login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,16 +22,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.movie.MainActivity"
             android:exported="false">
 
         </activity>
         <activity
-            android:name=".ui.MovieDetail"
+            android:name=".ui.moviedetail.MovieDetail"
             android:exported="false">
         </activity>
         <activity
-            android:name=".ui.UserListActivity"
+            android:name=".ui.list.UserListActivity"
             android:exported="false">
         </activity>
     </application>

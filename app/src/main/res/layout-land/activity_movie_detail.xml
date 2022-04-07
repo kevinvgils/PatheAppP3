@@ -20,7 +20,7 @@
             <ImageView
                 android:id="@+id/movieBanner"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="300dp"
                 android:contentDescription="Movie banner"
                 android:scaleType="centerCrop"
                 android:tint="#8B000000"
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:text="Title"
                 android:textColor="#FFFFFF"
-                android:textSize="24sp"
+                android:textSize="48sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/movieBanner"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -46,12 +46,12 @@
             <WebView
                 android:id="@+id/trailerView"
                 android:layout_width="0dp"
-                android:layout_height="200dp"
+                android:layout_height="300dp"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/movieBanner"
-                tools:visibility="visible" />
+                tools:visibility="invisible" />
 
             <RatingBar
                 android:id="@+id/movieRating"
@@ -164,6 +164,7 @@
                 app:layout_constraintStart_toEndOf="@+id/reviewRating"
                 app:layout_constraintTop_toTopOf="@+id/reviewRating" />
 
+
             <TextView
                 android:id="@+id/movieGenres"
                 android:layout_width="wrap_content"
@@ -176,8 +177,9 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/reviewRecyclerView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/reviewRating" />
 
