@@ -265,7 +265,7 @@ public class MovieDetail extends AppCompatActivity {
         final boolean[] output = {false};
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
-        Call<Movie> call = apiInterface.getMovieTrailers(getId(), "1e2c1f57cbed4d3e0c5dcad5996f2649", "nl");
+        Call<Movie> call = apiInterface.getMovieTrailers(getId(), "1e2c1f57cbed4d3e0c5dcad5996f2649", "US");
 
         call.enqueue(new Callback<Movie>() {
             @Override
