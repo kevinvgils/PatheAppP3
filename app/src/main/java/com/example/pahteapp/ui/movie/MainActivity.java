@@ -1,6 +1,6 @@
-package com.example.pahteapp.ui;
+package com.example.pahteapp.ui.movie;
 
-import static com.example.pahteapp.ui.login.IS_GUEST;
+import static com.example.pahteapp.ui.login.login.IS_GUEST;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -31,6 +31,8 @@ import com.example.pahteapp.domain.genre.DiscoverGenres;
 import com.example.pahteapp.domain.movie.DiscoveredMovies;
 import com.example.pahteapp.domain.genre.Genre;
 import com.example.pahteapp.domain.movie.Movie;
+import com.example.pahteapp.ui.list.UserListActivity;
+import com.example.pahteapp.ui.login.login;
 
 import java.util.LinkedList;
 

@@ -1,7 +1,7 @@
-package com.example.pahteapp.ui;
+package com.example.pahteapp.ui.list;
 
-import static com.example.pahteapp.ui.login.SESSION_ID;
-import static com.example.pahteapp.ui.login.USER_INFO;
+import static com.example.pahteapp.ui.login.login.SESSION_ID;
+import static com.example.pahteapp.ui.login.login.USER_INFO;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,6 +26,8 @@ import com.example.pahteapp.domain.movie.Movie;
 import com.example.pahteapp.domain.list.MovieList;
 import com.example.pahteapp.domain.list.PaginatedUserList;
 import com.example.pahteapp.domain.list.UserList;
+import com.example.pahteapp.ui.movie.MainActivity;
+import com.example.pahteapp.ui.login.login;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;

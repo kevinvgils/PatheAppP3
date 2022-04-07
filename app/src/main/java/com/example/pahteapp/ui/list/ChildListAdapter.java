@@ -1,6 +1,6 @@
-package com.example.pahteapp.ui;
+package com.example.pahteapp.ui.list;
 
-import static com.example.pahteapp.ui.login.SESSION_ID;
+import static com.example.pahteapp.ui.login.login.SESSION_ID;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;

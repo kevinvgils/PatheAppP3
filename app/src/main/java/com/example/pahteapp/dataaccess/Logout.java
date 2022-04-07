@@ -1,7 +1,7 @@
 package com.example.pahteapp.dataaccess;
 
-import static com.example.pahteapp.ui.login.IS_GUEST;
-import static com.example.pahteapp.ui.login.SESSION_ID;
+import static com.example.pahteapp.ui.login.login.IS_GUEST;
+import static com.example.pahteapp.ui.login.login.SESSION_ID;
 
 import android.content.Context;
 import android.widget.Toast;

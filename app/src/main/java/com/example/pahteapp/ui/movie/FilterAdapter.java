@@ -1,4 +1,4 @@
-package com.example.pahteapp.ui;
+package com.example.pahteapp.ui.movie;
 
 import android.content.Context;
 import android.util.Log;

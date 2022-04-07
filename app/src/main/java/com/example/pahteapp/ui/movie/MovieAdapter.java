@@ -1,4 +1,4 @@
-package com.example.pahteapp.ui;
+package com.example.pahteapp.ui.movie;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pahteapp.R;
 import com.example.pahteapp.domain.movie.Movie;
+import com.example.pahteapp.ui.moviedetail.MovieDetail;
 import com.squareup.picasso.Picasso;
 
 import java.util.LinkedList;

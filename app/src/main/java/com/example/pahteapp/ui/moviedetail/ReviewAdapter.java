@@ -1,8 +1,7 @@
-package com.example.pahteapp.ui;
+package com.example.pahteapp.ui.moviedetail;
 
 import android.content.Context;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

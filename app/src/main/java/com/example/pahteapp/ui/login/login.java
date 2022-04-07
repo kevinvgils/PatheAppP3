@@ -1,4 +1,4 @@
-package com.example.pahteapp.ui;
+package com.example.pahteapp.ui.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,6 +16,7 @@ import com.example.pahteapp.dataaccess.ApiClient;
 import com.example.pahteapp.dataaccess.ApiInterface;
 import com.example.pahteapp.domain.login.Authenticate;
 import com.example.pahteapp.domain.login.User;
+import com.example.pahteapp.ui.movie.MainActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;

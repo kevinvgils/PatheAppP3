@@ -1,7 +1,7 @@
-package com.example.pahteapp.ui;
+package com.example.pahteapp.ui.moviedetail;
 
-import static com.example.pahteapp.ui.login.IS_GUEST;
-import static com.example.pahteapp.ui.login.SESSION_ID;
+import static com.example.pahteapp.ui.login.login.IS_GUEST;
+import static com.example.pahteapp.ui.login.login.SESSION_ID;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,6 +31,9 @@ import com.example.pahteapp.domain.genre.Genre;
 import com.example.pahteapp.domain.movie.Movie;
 import com.example.pahteapp.domain.reviews.PaginatedReviews;
 import com.example.pahteapp.domain.reviews.Review;
+import com.example.pahteapp.ui.list.UserListActivity;
+import com.example.pahteapp.ui.login.login;
+import com.example.pahteapp.ui.movie.MainActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
